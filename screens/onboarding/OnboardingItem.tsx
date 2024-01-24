@@ -33,7 +33,7 @@ export default function OnboardingItem({
         style={{
           alignItems: 'center',
           justifyContent: 'center',
-          height: height / 2,
+          height: height / 1.5,
         }}>
         <Image
           style={{width: '100%', aspectRatio: 1.9 / 5}}
