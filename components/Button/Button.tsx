@@ -15,10 +15,10 @@ const StyledButton = styled.Pressable<ButtonProps>`
     variant === 'primary' ? Colors.primary : Colors.white};
   color: ${({variant}) =>
     variant === 'primary' ? Colors.white : Colors.primary};
-  padding: ${({isLarge}) => (isLarge ? '20px' : '10px')};
+  padding: ${({isLarge}) => (isLarge ? '20px' : '15px')};
   border: ${({variant}) =>
     variant === 'primary' ? 'none' : `2px solid ${Colors.ash}`};
-  width: ${({isWide}) => (isWide ? '100%' : '48%')};
+  width: ${({isWide}) => (isWide ? '100%' : '')};
   border-radius: 10px;
   font-weight: 500;
   font-size: 17px;

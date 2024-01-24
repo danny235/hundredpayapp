@@ -7,7 +7,7 @@ import {Button} from '../../components/Button/Button';
 import {Colors} from '../../components/Colors';
 import {ArrowBackwardIcon, ArrowRightIcon, EyeIcon, EyeLineIcon} from '../../components/SvgAssets';
 import CustomView from '../../components/Views/CustomView';
-import {MediumText, RegularText} from '../../components/styles/styledComponents';
+import {BoldText, MediumText, RegularText} from '../../components/styles/styledComponents';
 import { NavigationProp } from '@react-navigation/native';
 import Input from '../../components/Input';
 
@@ -30,6 +30,7 @@ export default function SignIn({navigation}: RootAuthI): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
   return (
     <CustomView>
+
       <View
         style={{
           flexDirection: 'row',
@@ -59,7 +60,7 @@ export default function SignIn({navigation}: RootAuthI): React.JSX.Element {
         </View>
       </View>
 
-      <MediumText>Sign In To Your Account</MediumText>
+      <BoldText style={{fontSize: 18 / fontScale, marginBottom: 40, color: Colors.black}}>Sign In To Your Account</BoldText>
       <Formik
         initialValues={{
           email: '',
@@ -69,11 +70,11 @@ export default function SignIn({navigation}: RootAuthI): React.JSX.Element {
           console.log(values);
         }}
         validationSchema={loginSchema}>
-        {formikProps => (
+        {(formikProps) => (
           <View style={{gap: 20}}>
             <View>
               
-                {/* <Input
+                <Input
                   placeholder="johndoe@example.com"
                   formikProps={formikProps}
                   formikKey="email"
@@ -81,24 +82,24 @@ export default function SignIn({navigation}: RootAuthI): React.JSX.Element {
                   autoCapitalize="none"
                   keyboardType="email-address"
                   label="Email"
-                /> */}
+                />
               
-              <View style={{position: 'relative'}}>
-                {/* <Input
+              <View style={{position: "relative"}}>
+                <Input
                   formikProps={formikProps}
                   formikKey="password"
                   placeholder="*********"
                   value={formikProps.values.password}
                   secureTextEntry={showPassword ? false : true}
-                  // style={{paddingRight: 80}}
+                  style={{paddingRight: 80}}
                   label="Password"
-                /> */}
-                <TextInput />
+                />
+                
                 <Pressable
                   style={{
                     position: 'absolute',
-                    bottom: 52,
-                    right: 30,
+                    bottom: 64,
+                    right: 10,
                   }}
                   onPress={() =>
                     setShowPassword(!showPassword)

@@ -1,27 +1,30 @@
-import React, { ReactNode } from 'react';
-import {View, Text, StyleSheet, TextInputProps, TextInput} from 'react-native';
-import {useWindowDimensions} from 'react-native';
-import styled from "styled-components/native"
-import { Colors } from '../Colors';
-import { MediumText, RegularText } from '../styles/styledComponents';
+import React, {ReactNode} from 'react';
+import {
+  StyleSheet,
+  TextInputProps,
+  View,
+  useWindowDimensions,
+} from 'react-native';
+import styled from 'styled-components/native';
+import {Colors} from '../Colors';
+import {MediumText, RegularText} from '../styles/styledComponents';
 
 interface InputProps extends TextInputProps {
   label: string;
   formikProps: any; // Adjust the type as per your Formik props
   formikKey: string;
   onChangeText?: (text: string) => void;
-} 
+}
 
 const StyledInput = styled.TextInput`
-  // border-radius: 5px;
-  // width: 100%;
-  // padding: 10px;
-  // font-family: SpaceGrotesk-Medium;
-  // font-size: 15px;
-  
-  // background-color: ${Colors.white};
+  border-radius: 7px;
+  width: 100%;
+  padding: 13px;
+  font-family: SpaceGrotesk-Medium;
+  font-size: 15px;
+  border: 1px solid ${Colors.ash};
+  background-color: ${Colors.white};
 `;
-
 
 function Input({
   label,
@@ -39,7 +42,7 @@ function Input({
 
   return (
     <FieldWrapper formikKey={formikKey} formikProps={formikProps} label={label}>
-      <TextInput
+      <StyledInput
         onChangeText={
           onChangeText ? onChangeText : formikProps.handleChange(formikKey)
         }
@@ -50,7 +53,7 @@ function Input({
       />
     </FieldWrapper>
   );
-};
+}
 
 interface FieldWrapperProps {
   children: ReactNode;
@@ -59,7 +62,7 @@ interface FieldWrapperProps {
   formikKey: string;
 }
 
-function FieldWrapper ({
+function FieldWrapper({
   children,
   label,
   formikProps,
@@ -68,17 +71,15 @@ function FieldWrapper ({
   const {fontScale} = useWindowDimensions();
 
   return (
-    <View>
-      <MediumText style={{fontSize:15 / fontScale}}>
-        {label}
-      </MediumText>
+    <View style={{gap: 10}}>
+      <MediumText style={{fontSize: 15 / fontScale}}>{label}</MediumText>
       {children}
       <RegularText style={styles.error}>
         {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
       </RegularText>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -90,7 +91,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     height: 17.5,
     color: 'red',
-    fontFamily: 'DMSans-Regular',
   },
   input: {
     padding: 10,
