@@ -4,9 +4,7 @@ import { Colors } from '../components/Colors';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { DiscoverStackScreen, HomeStackScreen, SettingsStackScreen } from './AppStacks';
-import HomeIcon from 'react-native-vector-icons/Foundation';
-import DiscoverIcon from 'react-native-vector-icons/MaterialIcons';
-import SettingsIcon from 'react-native-vector-icons/Ionicons';
+import { DiscoverIcon, HomeIcon, SettingsIcon } from '../components/SvgAssets';
 
 
 
@@ -17,7 +15,7 @@ export default function MainTabs():React.JSX.Element {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: Colors.neutral8,
+        tabBarInactiveTintColor: Colors.mordernBlack,
         tabBarLabelStyle: {
           fontSize: 12,
           letterSpacing: 0.5,
@@ -28,7 +26,7 @@ export default function MainTabs():React.JSX.Element {
         options={({route}) => ({
           headerShown: false,
           tabBarIcon: ({color, size}) => (
-            <HomeIcon name="home" color={color} size={24} />
+            <HomeIcon  color={color}  />
           ),
           tabBarStyle: (route => {
             const routeName = getFocusedRouteNameFromRoute(route) ?? '';
@@ -45,13 +43,13 @@ export default function MainTabs():React.JSX.Element {
         options={({route}) => ({
           headerShown: false,
           tabBarIcon: ({color, size}) => (
-            <DiscoverIcon name="shopping-bag" color={color} size={24} />
+            <DiscoverIcon  color={color} />
           ),
           tabBarStyle: (route => {
             const routeName = getFocusedRouteNameFromRoute(route) ?? '';
             console.log(routeName);
             if (routeName === '') return;
-            if (routeName === 'Discover') return;
+            if (routeName === 'DiscoverStack') return;
             return {display: 'none'};
           })(route),
         })}
@@ -62,13 +60,13 @@ export default function MainTabs():React.JSX.Element {
         options={({route}) => ({
           headerShown: false,
           tabBarIcon: ({color, size}) => (
-            <SettingsIcon name="settings" color={color} size={24} />
+            <SettingsIcon  color={color}  />
           ),
           tabBarStyle: (route => {
             const routeName = getFocusedRouteNameFromRoute(route) ?? '';
             console.log(routeName);
             if (routeName === '') return;
-            if (routeName === 'Settings') return;
+            if (routeName === 'SettingsStack') return;
             return {display: 'none'};
           })(route),
         })}

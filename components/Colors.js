@@ -13,4 +13,5 @@ export const Colors = {
   success200: '#DCFCE7',
   error02: '#FEE2E2',
   ash: '#E5E7EB',
+  mordernBlack: '#9CA3AF',
 };

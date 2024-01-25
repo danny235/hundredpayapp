@@ -6,7 +6,9 @@ import {
   BoldText,
   LightText,
   MediumText,
+  RegularText,
 } from '../../../components/styles/styledComponents';
+import { ArrowDownIcon, WalletIcon } from '../../../components/SvgAssets';
 
 export default function Balance(): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
@@ -14,21 +16,36 @@ export default function Balance(): React.JSX.Element {
     <View
       style={{
         gap: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
         paddingVertical: 40,
       }}>
-      <Pressable style={{flexDirection: 'row', gap: 10, alignItems: 'center'}}>
-        <MediumText style={{fontSize: 17 / fontScale}}>
-          Pay token balance
+      <Pressable
+        style={{
+          flexDirection: 'row',
+          gap: 10,
+          alignItems: 'center',
+          borderBottomColor: Colors.ash,
+          paddingVertical: 10,
+          borderBottomWidth: 1,
+          width: '60%',
+        }}>
+        <View
+          style={{
+            borderRightColor: Colors.ash,
+            paddingRight: 10,
+            borderRightWidth: 1,
+          }}>
+          <WalletIcon />
+        </View>
+        <MediumText style={{fontSize: 15 / fontScale}}>
+          Account Balance
         </MediumText>
-        <Icon name="chevron-down" size={24} />
+        <ArrowDownIcon />
       </Pressable>
-      <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
-        <BoldText style={{fontSize: 28 / fontScale, color: Colors.black}}>
-           60,000
+      <View style={{gap: 10}}>
+        <BoldText style={{fontSize: 29 / fontScale, color: Colors.black}}>
+          ₦ 60,000.00
         </BoldText>
-        <LightText style={{color: Colors.black}}>$PAY</LightText>
+        <RegularText style={{color: Colors.mordernBlack}}>100,000$PAY</RegularText>
       </View>
     </View>
   );
