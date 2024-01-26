@@ -11,18 +11,18 @@ import {MediumText, RegularText} from '../styles/styledComponents';
 
 interface InputProps extends TextInputProps {
   label: string;
-  formikProps: any; // Adjust the type as per your Formik props
+  formikProps: any;
   formikKey: string;
   onChangeText?: (text: string) => void;
 }
 
-const StyledInput = styled.TextInput`
+const StyledInput = styled.TextInput<{error?: boolean}>`
   border-radius: 7px;
   width: 100%;
   padding: 13px;
   font-family: SpaceGrotesk-Medium;
   font-size: 15px;
-  border: 1px solid ${Colors.ash};
+  border: 1px solid ${({error}) => (error ? 'red' : Colors.ash)};
   background-color: ${Colors.white};
 `;
 
@@ -33,12 +33,7 @@ function Input({
   onChangeText,
   ...rest
 }: InputProps): React.JSX.Element {
-  const inputStyles: {borderColor?: string} = {};
   const {fontScale} = useWindowDimensions();
-
-  if (formikProps.touched[formikKey] && formikProps.errors[formikKey]) {
-    inputStyles.borderColor = 'red';
-  }
 
   return (
     <FieldWrapper formikKey={formikKey} formikProps={formikProps} label={label}>
@@ -47,8 +42,7 @@ function Input({
           onChangeText ? onChangeText : formikProps.handleChange(formikKey)
         }
         onBlur={formikProps.handleBlur(formikKey)}
-        style={inputStyles}
-        // selectionColor={Colors.secondary}
+        error={formikProps.touched[formikKey] && formikProps.errors[formikKey]}
         {...rest}
       />
     </FieldWrapper>
@@ -58,7 +52,7 @@ function Input({
 interface FieldWrapperProps {
   children: ReactNode;
   label: string;
-  formikProps: any; // Adjust the type as per your Formik props
+  formikProps: any;
   formikKey: string;
 }
 
@@ -72,7 +66,9 @@ function FieldWrapper({
 
   return (
     <View style={{gap: 10}}>
-      <MediumText style={{fontSize: 15 / fontScale}}>{label}</MediumText>
+      <MediumText style={{fontSize: 15 / fontScale, color: Colors?.grayText}}>
+        {label}
+      </MediumText>
       {children}
       <RegularText style={styles.error}>
         {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
@@ -82,31 +78,10 @@ function FieldWrapper({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   error: {
-    marginBottom: 20,
+    marginBottom: 6,
     height: 17.5,
     color: 'red',
-  },
-  input: {
-    padding: 10,
-    marginBottom: 3,
-  },
-  inputContainer: {
-    marginBottom: 20,
-    shadowColor: '#000',
-
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
   },
 });
 

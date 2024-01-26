@@ -1,9 +1,20 @@
 import React, {PropsWithChildren} from 'react';
-import {Image, ImageBackground, Text, View, useWindowDimensions} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Colors} from '../../components/Colors';
-import { BoldText, Indicator, IndicatorsWrappers, LightText } from '../../components/styles/styledComponents';
-import Circle from "../../assets/images/circles.png"
+import {
+  BoldText,
+  Indicator,
+  IndicatorsWrappers,
+  LightText,
+} from '../../components/styles/styledComponents';
+import Circle from '../../assets/images/circles.png';
 
 type OnboardingItemT = PropsWithChildren<{
   item: {
@@ -12,7 +23,7 @@ type OnboardingItemT = PropsWithChildren<{
     description: string;
     image: any;
   };
-  currentIndex: number
+  currentIndex: number;
 }>;
 
 export default function OnboardingItem({
@@ -21,7 +32,7 @@ export default function OnboardingItem({
 }: OnboardingItemT): React.JSX.Element {
   const {height, width, fontScale} = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  
+
   return (
     <View
       style={{
@@ -29,11 +40,13 @@ export default function OnboardingItem({
         paddingHorizontal: 14,
         paddingTop: insets.top,
       }}>
-      <ImageBackground source={Circle} resizeMode='cover'
+      <ImageBackground
+        source={Circle}
+        resizeMode="cover"
         style={{
           alignItems: 'center',
           justifyContent: 'center',
-          height: height / 1.5,
+          height: height / 1.9,
         }}>
         <Image
           style={{width: '100%', aspectRatio: 1.9 / 5}}
@@ -41,11 +54,14 @@ export default function OnboardingItem({
           source={item.image}
         />
       </ImageBackground>
-      <View>
-        
-      </View>
-      <View style={{paddingHorizontal: 20, gap: 10, paddingVertical: 20, width: "100%"}}>
-      
+      <View></View>
+      <View
+        style={{
+          paddingHorizontal: 0,
+          gap: 10,
+          paddingVertical: 20,
+          width: '100%',
+        }}>
         <BoldText
           style={{
             fontSize: 25 / fontScale,

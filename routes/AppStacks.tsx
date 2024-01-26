@@ -8,6 +8,12 @@ import {
   SignIn,
 } from '../screens';
 import MainTabs from './MainTabs';
+import CreateAccount from '../screens/authentication/CreateAccount';
+import PhoneNumber from '../screens/authentication/PhoneNumber';
+import SetPassword from '../screens/authentication/SetPassword';
+import ForgotPassword from '../screens/authentication/ForgotPassword';
+import SecureCode from '../screens/authentication/SecureCode';
+import NewPassword from '../screens/authentication/NewPassword';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -62,6 +68,12 @@ export default function NavigationContent(): React.JSX.Element {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="RootAuth" component={RootAuth} />
         <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="CreateAccount" component={CreateAccount} />
+        <Stack.Screen name="PhoneNumber" component={PhoneNumber} />
+        <Stack.Screen name="SetPassword" component={SetPassword} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="SecureCode" component={SecureCode} />
+        <Stack.Screen name="NewPassword" component={NewPassword} />
       </Stack.Group>
       <Stack.Screen
         name="MainTabs"

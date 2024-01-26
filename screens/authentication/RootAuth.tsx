@@ -1,33 +1,32 @@
-import { View, Text, Image, useWindowDimensions, StyleSheet, Pressable } from 'react-native'
-import React from 'react'
-import CustomView from '../../components/Views/CustomView'
-import PayLogo from '../../assets/images/payLogo.png';
-import { BoldText, LightText, MediumText } from '../../components/styles/styledComponents';
-import { Colors } from '../../components/Colors';
-import { AddIcon, ArrowForwardIcon } from '../../components/SvgAssets';
-import { NavigationProp } from '@react-navigation/native';
+import {
+  View,
+  Text,
+  Image,
+  useWindowDimensions,
+  StyleSheet,
+  Pressable,
+} from 'react-native';
+import React from 'react';
+import CustomView from '../../components/Views/CustomView';
+import {
+  BoldText,
+  LightText,
+  MediumText,
+} from '../../components/styles/styledComponents';
+import {Colors} from '../../components/Colors';
+import {AddIcon, ArrowForwardIcon} from '../../components/SvgAssets';
+import {NavigationProp} from '@react-navigation/native';
+import Header from '../../components/headers/AuthHeader';
 
 interface RootAuthI {
   navigation: NavigationProp<any>;
 }
 
 export default function RootAuth({navigation}: RootAuthI) {
-    const {fontScale} = useWindowDimensions()
+  const {fontScale} = useWindowDimensions();
   return (
     <CustomView>
-      <Image
-        resizeMode="contain"
-        source={PayLogo}
-        style={{
-          width: '30%',
-          aspectRatio: 2.4 / 0.9,
-          alignSelf: 'center',
-          justifyContent: 'center',
-          marginTop: 20,
-          marginBottom: 60,
-        }}
-      />
-
+      <Header />
       <View style={{marginTop: 50, gap: 20}}>
         <BoldText style={{fontSize: 17 / fontScale, flexShrink: 1}}>
           Welcome to the 100pay experience
@@ -37,7 +36,9 @@ export default function RootAuth({navigation}: RootAuthI) {
           created.
         </LightText>
 
-        <Pressable style={styles.clickBox}>
+        <Pressable
+          style={styles.clickBox}
+          onPress={() => navigation.navigate('CreateAccount')}>
           <View style={styles.textWrapper}>
             <BoldText style={{fontSize: 15 / fontScale, flexShrink: 1}}>
               Welcome to the 100pay experience
@@ -86,29 +87,29 @@ export default function RootAuth({navigation}: RootAuthI) {
 }
 
 const styles = StyleSheet.create({
-    clickBox: {
-        borderWidth: 1,
-        borderColor: Colors.ash,
-        paddingHorizontal: 20,
-        paddingVertical: 20,
-        width: "100%",
-        borderRadius: 10,
-        flexDirection: "row",
-        flexShrink: 1,
-        alignItems: "center"
-    },
-    textWrapper: {
-      gap: 10,
-      width: "70%",
-    },
-    coloredWrapper: {
-      flexDirection: "row",
-      gap: 8,
-      alignItems: "center",
-      backgroundColor: Colors.primaryLight,
-      paddingHorizontal: 14,
-      borderRadius: 50,
-      justifyContent: "center",
-      paddingVertical: 7
-    },
-})
+  clickBox: {
+    borderWidth: 1,
+    borderColor: Colors.ash,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    width: '100%',
+    borderRadius: 10,
+    flexDirection: 'row',
+    flexShrink: 1,
+    alignItems: 'center',
+  },
+  textWrapper: {
+    gap: 10,
+    width: '70%',
+  },
+  coloredWrapper: {
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+    backgroundColor: Colors.primaryLight,
+    paddingHorizontal: 14,
+    borderRadius: 50,
+    justifyContent: 'center',
+    paddingVertical: 7,
+  },
+});
