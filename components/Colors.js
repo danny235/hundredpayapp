@@ -13,5 +13,9 @@ export const Colors = {
   success200: '#DCFCE7',
   error02: '#FEE2E2',
   ash: '#E5E7EB',
-  mordernBlack: '#9CA3AF',
+  grayText: '#9CA3AF',
+  modernBlack:'#E5E7EB',
+  authTextTitle: '#4B5563',
+  searchInput: '#F3F4F6'
+
 };

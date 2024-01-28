@@ -76,18 +76,18 @@ export default function Onboarding({navigation}: OnboardingI): React.JSX.Element
 
         <View
           style={{
-            paddingHorizontal: 20,
+            paddingHorizontal: 12,
             flexDirection: 'row',
             gap: 10,
             marginTop: "auto",
             width: "100%"
           }}>
-          <Button style={{width: "50%"}} variant="secondary" isLarge={true} isWide={false} onPress={()=>navigation.navigate("RootAuth")}>
+          <Button style={{width: "48.5%"}} variant="secondary" isLarge={true} isWide={false} onPress={()=>navigation.navigate("RootAuth")}>
             <BoldText style={{color: Colors.black, fontSize: 16 / fontScale}}>
               Skip
             </BoldText>
           </Button>
-          <Button style={{width: "50%"}} variant="primary" isWide={false} isLarge={true} onPress={()=> scrollTo()}>
+          <Button style={{width: "48.5%"}} variant="primary" isWide={false} isLarge={true} onPress={()=> scrollTo()}>
             <BoldText style={{color: Colors.white, fontSize: 16 / fontScale}}>
               Next
             </BoldText>
