@@ -8,6 +8,7 @@ import {
   MediumText,
   RegularText,
 } from '../../../components/styles/styledComponents';
+import { PayIcon, RecieveIcon } from '../../../components/SvgAssets';
 
 type TransactionItemT = {
   id: number;
@@ -28,25 +29,18 @@ export default function TransactionItem({
   const {fontScale} = useWindowDimensions();
   return (
     <Pressable style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-      <View
-        style={{
-          backgroundColor:
-            item.title === 'sent' ? Colors.error02 : Colors.success200,
-          padding: 10,
-          borderRadius: 50,
-        }}>
-        <Icon
-          name={item.title === 'sent' ? 'arrow-up' : 'arrow-down'}
-          color={item.title === 'sent' ? Colors.error07 : Colors.success700}
-          size={24}
-        />
-      </View>
-
       <View style={{gap: 4}}>
-        <BoldText
-          style={{fontSize: 17 / fontScale, textTransform: 'capitalize'}}>
-          {item.title}
-        </BoldText>
+        <View style={{flexDirection: "row", alignItems: "center", gap: 10}}>
+          {item.title === 'sent' ? (
+            <PayIcon />
+          ) : (
+            <RecieveIcon color={Colors.mordernBlack} />
+          )}
+          <BoldText
+            style={{fontSize: 17 / fontScale, textTransform: 'capitalize'}}>
+            {item.title}
+          </BoldText>
+        </View>
         <MediumText style={{fontSize: 14 / fontScale}}>
           {item.title === 'sent'
             ? `To: ID ${item.from}`

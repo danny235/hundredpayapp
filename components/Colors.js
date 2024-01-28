@@ -17,4 +17,5 @@ export const Colors = {
   modernBlack:'#E5E7EB',
   authTextTitle: '#4B5563',
   searchInput: '#F3F4F6'
+
 };

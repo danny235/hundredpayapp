@@ -42,7 +42,7 @@ export function DiscoverStackScreen(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
-      <DiscoverStack.Screen name="Discover" component={DiscoverScreen} />
+      <DiscoverStack.Screen name="DiscoverStack" component={DiscoverScreen} />
     </DiscoverStack.Navigator>
   );
 }
@@ -53,7 +53,7 @@ export function SettingsStackScreen(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
-      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+      <SettingsStack.Screen name="SettingsStack" component={SettingsScreen} />
     </SettingsStack.Navigator>
   );
 }
@@ -64,6 +64,11 @@ export default function NavigationContent(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
+        <Stack.Screen
+          name="MainTabs"
+          options={{headerShown: false}}
+          component={MainTabs}
+        />
       <Stack.Group>
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="RootAuth" component={RootAuth} />
@@ -75,11 +80,6 @@ export default function NavigationContent(): React.JSX.Element {
         <Stack.Screen name="SecureCode" component={SecureCode} />
         <Stack.Screen name="NewPassword" component={NewPassword} />
       </Stack.Group>
-      <Stack.Screen
-        name="MainTabs"
-        options={{headerShown: false}}
-        component={MainTabs}
-      />
     </Stack.Navigator>
   );
 }
