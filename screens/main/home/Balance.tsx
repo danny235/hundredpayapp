@@ -45,7 +45,7 @@ export default function Balance(): React.JSX.Element {
         <BoldText style={{fontSize: 29 / fontScale, color: Colors.black}}>
           ₦ 60,000.00
         </BoldText>
-        <RegularText style={{color: Colors.mordernBlack}}>100,000$PAY</RegularText>
+        <RegularText style={{color: Colors.modernBlack}}>100,000$PAY</RegularText>
       </View>
     </View>
   );

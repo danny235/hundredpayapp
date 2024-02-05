@@ -34,7 +34,7 @@ export default function TransactionItem({
           {item.title === 'sent' ? (
             <PayIcon />
           ) : (
-            <RecieveIcon color={Colors.mordernBlack} />
+            <RecieveIcon color={Colors.modernBlack} />
           )}
           <BoldText
             style={{fontSize: 17 / fontScale, textTransform: 'capitalize'}}>
