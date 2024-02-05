@@ -14,8 +14,9 @@ export const Colors = {
   error02: '#FEE2E2',
   ash: '#E5E7EB',
   grayText: '#9CA3AF',
-  modernBlack:'#E5E7EB',
+  modernBlack: '#E5E7EB',
   authTextTitle: '#4B5563',
-  searchInput: '#F3F4F6'
-
+  searchInput: '#F3F4F6',
+  balanceBlack: '#4B5563',
+  memojiBackground: '#F9FAFB'
 };

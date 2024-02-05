@@ -8,7 +8,7 @@ import {
   MediumText,
   RegularText,
 } from '../../../components/styles/styledComponents';
-import { ArrowDownIcon, WalletIcon } from '../../../components/SvgAssets';
+import {ArrowDownIcon, WalletIcon} from '../../../components/SvgAssets';
 
 export default function Balance(): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
@@ -16,7 +16,8 @@ export default function Balance(): React.JSX.Element {
     <View
       style={{
         gap: 20,
-        paddingVertical: 40,
+        paddingBottom: 40,
+        paddingTop: 16
       }}>
       <Pressable
         style={{
@@ -36,16 +37,17 @@ export default function Balance(): React.JSX.Element {
           }}>
           <WalletIcon />
         </View>
-        <MediumText style={{fontSize: 15 / fontScale}}>
+        <MediumText style={{fontSize: 15 / fontScale, color: Colors.grayText}}>
           Account Balance
         </MediumText>
         <ArrowDownIcon />
       </Pressable>
       <View style={{gap: 10}}>
-        <BoldText style={{fontSize: 29 / fontScale, color: Colors.black}}>
+        <BoldText
+          style={{fontSize: 29 / fontScale, color: Colors.balanceBlack}}>
           ₦ 60,000.00
         </BoldText>
-        <RegularText style={{color: Colors.mordernBlack}}>100,000$PAY</RegularText>
+        <RegularText style={{color: Colors.grayText}}>100,000$PAY</RegularText>
       </View>
     </View>
   );
