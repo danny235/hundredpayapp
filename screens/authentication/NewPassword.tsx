@@ -23,7 +23,6 @@ import {
   BoldText,
   LightText,
   MediumText,
-  RegularText,
 } from '../../components/styles/styledComponents';
 import Input from '../../components/Input';
 import Header from '../../components/headers/AuthHeader';
@@ -236,7 +235,7 @@ export default function NewPassword({
                     color: Colors?.authTextTitle,
                     marginBottom: 4,
                   }}>
-                  Welcome Emmanuel
+                  Welcome Ikenna
                 </BoldText>
                 <LightText
                   style={{
@@ -248,7 +247,6 @@ export default function NewPassword({
                   Your account has successfully been created and your now ready
                   to go!{' '}
                 </LightText>
-                {/* Add header content here */}
               </View>
 
               <Button

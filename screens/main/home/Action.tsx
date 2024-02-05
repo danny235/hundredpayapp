@@ -15,13 +15,13 @@ export default function Action({onSendClick}: ActionProps): React.JSX.Element {
     <View style={{gap: 20, flexDirection: 'row'}}>
       <Pressable onPress={() => onSendClick()} style={styles.btn}>
         <PayIcon />
-        <MediumText style={{fontSize: 15 / fontScale, color: Colors.black}}>
+        <MediumText style={{fontSize: 15 / fontScale, color: Colors.balanceBlack}}>
           Pay
         </MediumText>
       </Pressable>
       <Pressable style={styles.btn}>
         <RecieveIcon />
-        <MediumText style={{fontSize: 15 / fontScale, color: Colors.black}}>
+        <MediumText style={{fontSize: 15 / fontScale, color: Colors.balanceBlack}}>
           Recieve
         </MediumText>
       </Pressable>

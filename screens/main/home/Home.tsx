@@ -4,6 +4,7 @@ import {
   FlatList,
   Image,
   Pressable,
+  SafeAreaView,
   ScrollView,
   StyleProp,
   View,
@@ -30,8 +31,14 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import {ArrowFrontIcon, CopyIcon, NotifictionIcon} from '../../../components/SvgAssets';
+import {
+  ArrowFrontIcon,
+  CopyIcon,
+  NotifictionIcon,
+} from '../../../components/SvgAssets';
 import CustomView from '../../../components/Views/CustomView';
+import SafeAreaViewHeader from '../../../components/Views/SafeAreaView';
+import Memojis from './Memojis';
 
 interface CustomBackdropProps {
   animatedIndex: SharedValue<number>;
@@ -119,21 +126,13 @@ interface HomeProps {
 
 export default function Home({navigation}: HomeProps): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
-  // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [copiedText, setCopiedText] = useState('');
-
   const copyToClipboard = () => {
     Clipboard.setString('234gh6');
   };
-
-  
-  // variables
-  // state
-  const [snapTo, setSnapTo] = useState(['38%', '40%']); //38%
-  // variables
+  const [snapTo, setSnapTo] = useState(['38%', '40%']);
   const snapPoints = useMemo(() => snapTo, [snapTo]);
-  // callbacks
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
@@ -145,72 +144,92 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
   }, []);
 
   return (
-    <CustomView>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
-        <View style={{flexDirection: 'row', gap: 10, paddingVertical: 20}}>
-          <Image
-            style={{borderRadius: 40, height: 40, width: 40}}
-            source={{
-              uri: 'https://plus.unsplash.com/premium_photo-1703617663829-ac7430988118?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8',
-            }}
-          />
-          <View>
-            <BoldText style={{fontSize: 16 / fontScale}}>
-              Hello, Daniel 👋
-            </BoldText>
-            <Pressable
-              onPress={copyToClipboard}
-              style={{flexDirection: 'row', alignItems: 'center', gap: 5}}>
-              <LightText
-                style={{textTransform: 'uppercase', fontSize: 12 / fontScale}}>
-                ID: 234gh6
-              </LightText>
-              <CopyIcon />
-            </Pressable>
+    <SafeAreaViewHeader>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <View style={{flexDirection: 'row', gap: 10, paddingVertical: 20}}>
+            <Image
+              style={{borderRadius: 40, height: 40, width: 40}}
+              source={{
+                uri: 'https://plus.unsplash.com/premium_photo-1703617663829-ac7430988118?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8',
+              }}
+            />
+            <View>
+              <BoldText
+                style={{fontSize: 16 / fontScale, color: Colors.balanceBlack}}>
+                Hello, Daniel 👋
+              </BoldText>
+              <Pressable
+                onPress={copyToClipboard}
+                style={{flexDirection: 'row', alignItems: 'center', gap: 5}}>
+                <LightText
+                  style={{
+                    textTransform: 'uppercase',
+                    fontSize: 12 / fontScale,
+                    color: Colors.grayText,
+                  }}>
+                  ID: 234gh6
+                </LightText>
+                <CopyIcon />
+              </Pressable>
+            </View>
           </View>
+          <Pressable>
+            <NotifictionIcon />
+          </Pressable>
         </View>
+        <Balance />
 
-        <Pressable>
-          <NotifictionIcon />
-        </Pressable>
-      </View>
-      <Balance />
-      <ScrollView>
-        <Action onSendClick={handlePresentModalPress} />
-        <FlatList
-          data={trx}
-          style={{flexGrow: 1}}
-          contentContainerStyle={{flex: 1, gap: 20, paddingVertical: 20}}
-          ListHeaderComponent={() => (
-            <Pressable
-              style={{
-                flexDirection: 'row',
-                gap: 10,
-                alignItems: "center"
-              }}>
-              <View
+        <Action 
+        onSendClick={()=>navigation.navigate('Pay' as never)}
+       // onSendClick={handlePresentModalPress} 
+        />
+        <Memojis />
+        <View
+          style={{
+            backgroundColor: Colors.memojiBackground,
+            padding: 16,
+            borderRadius: 12,
+          }}>
+          <FlatList
+            data={trx}
+            style={{flexGrow: 1}}
+            contentContainerStyle={{flex: 1, gap: 20, paddingVertical: 20}}
+            ListHeaderComponent={() => (
+              <Pressable
                 style={{
                   flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  borderLeftColor: Colors.primary,
-                  borderLeftWidth: 5,
-                  borderRadius: 20,
-                  height: 16
-                }}
-              />
-              <BoldText style={{fontSize: 17 / fontScale}}>
-                Recents
-              </BoldText>
-              <ArrowFrontIcon />
-            </Pressable>
-          )}
-          renderItem={({item}) => <TransactionItem item={item} />}
-        />
+                  gap: 10,
+                  alignItems: 'center',
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    borderLeftColor: Colors.primary,
+                    borderLeftWidth: 5,
+                    borderRadius: 20,
+                    height: 16,
+                  }}
+                />
+                <BoldText
+                  style={{
+                    fontSize: 17 / fontScale,
+                    color: Colors.balanceBlack,
+                  }}>
+                  History
+                </BoldText>
+                <ArrowFrontIcon />
+              </Pressable>
+            )}
+            renderItem={({item}) => <TransactionItem item={item} />}
+          />
+        </View>
       </ScrollView>
 
       {/* Send naira modal */}
@@ -237,6 +256,6 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
           <Icon name="x" />
         </BottomSheetModal>
       </BottomSheetModalProvider>
-    </CustomView>
+    </SafeAreaViewHeader>
   );
 }
