@@ -8,7 +8,7 @@ import {
   MediumText,
   RegularText,
 } from '../../../components/styles/styledComponents';
-import { PayIcon, RecieveIcon } from '../../../components/SvgAssets';
+import {PayIcon, RecieveIcon} from '../../../components/SvgAssets';
 
 type TransactionItemT = {
   id: number;
@@ -30,32 +30,44 @@ export default function TransactionItem({
   return (
     <Pressable style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
       <View style={{gap: 4}}>
-        <View style={{flexDirection: "row", alignItems: "center", gap: 10}}>
+        <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
           {item.title === 'sent' ? (
             <PayIcon />
           ) : (
-            <RecieveIcon color={Colors.mordernBlack} />
+            <RecieveIcon color={Colors.balanceBlack} />
           )}
           <BoldText
-            style={{fontSize: 17 / fontScale, textTransform: 'capitalize'}}>
+            style={{
+              fontSize: 17 / fontScale,
+              textTransform: 'capitalize',
+              color: Colors.balanceBlack,
+            }}>
             {item.title}
           </BoldText>
         </View>
-        <MediumText style={{fontSize: 14 / fontScale}}>
+        <MediumText style={{fontSize: 14 / fontScale, color: Colors.grayText}}>
           {item.title === 'sent'
             ? `To: ID ${item.from}`
             : `From: ID ${item.from}`}
         </MediumText>
-        <LightText style={{fontSize: 13 / fontScale}}>{item.date}</LightText>
+        <LightText style={{fontSize: 13 / fontScale, color: Colors.grayText}}>
+          {item.date}
+        </LightText>
       </View>
 
       <View style={{marginLeft: 'auto', justifyContent: 'flex-end'}}>
         <BoldText
-          style={{fontSize: 17 / fontScale, textTransform: 'capitalize'}}>
+          style={{
+            textAlign: 'right',
+            fontSize: 17 / fontScale,
+            textTransform: 'capitalize',
+            color: Colors.balanceBlack,
+          }}>
           N{item.amount}
         </BoldText>
         <RegularText
           style={{
+            textAlign: 'right',
             fontSize: 15 / fontScale,
             textTransform: 'capitalize',
             color:
