@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, TextInput, useWindowDimensions} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  useWindowDimensions,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {Button} from '../../../../components/Button/Button';
@@ -20,6 +27,7 @@ import {
 import Memojis from '../Memojis';
 import UserPayList from './UsersPayList';
 import {ScrollView} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const validationSchema = yup.object().shape({
   recipientNameOrID: yup
@@ -29,6 +37,7 @@ const validationSchema = yup.object().shape({
 });
 
 export default function PayHome() {
+  const navigation = useNavigation();
   const formikProps = useFormik({
     initialValues: {
       recipientNameOrID: '',
@@ -85,35 +94,47 @@ export default function PayHome() {
           </View>
           <View style={{marginTop: 12, gap: 24}}>
             {submitted && (
-              <View
+              <Pressable
                 style={{
                   backgroundColor: Colors.memojiBackground,
                   padding: 16,
                   borderRadius: 12,
-                }}>
+                }}
+                onPress={() => navigation.navigate('EnterAmount' as never)}>
                 <SemiBoldText style={{color: Colors.balanceBlack}}>
                   Send Money to:
                 </SemiBoldText>
                 <View style={{marginTop: 12, marginBottom: -24}}>
                   <UserPayList renderSingleItem />
                 </View>
-              </View>
+              </Pressable>
             )}
             <View>
               <Memojis />
 
-              <MediumText
-                style={[styles.countryButtonText, {fontSize: 15 / fontScale}]}>
-                Search
-              </MediumText>
-              <View style={styles.searchContainer}>
-                <TextInput
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('SearchUsersPayList' as never)
+                }
+                style={[
+                  styles.searchContainer,
+                  {
+                    height: 48,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  },
+                ]}>
+                {/* <TextInput
                   style={[styles.input, {flex: 1}]}
                   placeholder="Search person or ID here..."
                   placeholderTextColor="#999"
-                />
+                  editable={false}
+                /> */}
+                <SemiBoldText style={{color: Colors.grayText}}>
+                  Search person or ID here...
+                </SemiBoldText>
                 <CircleIcon color={Colors.grayText} />
-              </View>
+              </TouchableOpacity>
             </View>
             <View>
               <SemiBoldText

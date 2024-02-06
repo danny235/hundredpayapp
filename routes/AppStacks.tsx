@@ -15,10 +15,14 @@ import ForgotPassword from '../screens/authentication/ForgotPassword';
 import SecureCode from '../screens/authentication/SecureCode';
 import NewPassword from '../screens/authentication/NewPassword';
 import PayHome from '../screens/main/home/PayFlow/Pay';
+import SearchUsersPayList from '../screens/main/home/PayFlow/SearchUsersPayList';
+import EnterAmount from '../screens/main/home/PayFlow/EnterAmount';
+import ConfirmPayment from '../screens/main/home/PayFlow/ConfirmPayment';
+import TransactionPin from '../screens/main/home/PayFlow/TransactionPin';
+import PaymentComplete from '../screens/main/home/PayFlow/PaymentComplete';
 
 export type RootStackParamList = {
   Home: undefined;
-  // Define other screens and their parameters here
 };
 
 const Stack = createNativeStackNavigator();
@@ -80,8 +84,16 @@ export default function NavigationContent(): React.JSX.Element {
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="SecureCode" component={SecureCode} />
         <Stack.Screen name="NewPassword" component={NewPassword} />
-
         <Stack.Screen name="Pay" component={PayHome} />
+        <Stack.Screen
+          name="SearchUsersPayList"
+          component={SearchUsersPayList}
+        />
+        <Stack.Screen name="EnterAmount" component={EnterAmount} />
+        <Stack.Screen name="ConfirmPayment" component={ConfirmPayment} />
+        <Stack.Screen name="TransactionPin" component={TransactionPin} />
+        <Stack.Screen name="PaymentComplete" component={PaymentComplete} />
+     
       </Stack.Group>
     </Stack.Navigator>
   );
