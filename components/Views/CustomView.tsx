@@ -17,6 +17,7 @@ export default function CustomView({children}: CustomViewProps) {
         paddingHorizontal: 20,
         flex: 1,
         backgroundColor: Colors.white,
+        position: "relative"
       }}>
       {children}
     </View>

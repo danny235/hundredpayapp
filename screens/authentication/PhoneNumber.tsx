@@ -1,15 +1,35 @@
-import { Formik } from 'formik';
-import React, { useState } from 'react';
-import { View, useWindowDimensions, Modal, Pressable, StyleSheet, Text, TextInput, Image, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  FlatList,
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import * as yup from 'yup';
-import { Button } from '../../components/Button/Button';
-import { Colors } from '../../components/Colors';
-import { ArrowForwardIcon, ArrowRightIcon, BackSpaceIcon, CircleIcon, NigeriaFlag, PhoneIcon } from '../../components/SvgAssets';
+import {Button} from '../../components/Button/Button';
+import {Colors} from '../../components/Colors';
+import CustomNumberKeypad from '../../components/Keypad/CustomNumberKeypad';
+import {
+  ArrowForwardIcon,
+  ArrowRightIcon,
+  CircleIcon,
+  NigeriaFlag,
+  PhoneIcon,
+} from '../../components/SvgAssets';
 import CustomView from '../../components/Views/CustomView';
-import { BoldText, LightText, MediumText } from '../../components/styles/styledComponents';
-import { NavigationProp } from '@react-navigation/native';
 import Header from '../../components/headers/AuthHeader';
 import AuthTitleText from '../../components/headers/AuthTitleText';
+import {
+  BoldText,
+  LightText,
+  MediumText,
+} from '../../components/styles/styledComponents';
 
 const loginSchema = yup.object().shape({
   phoneNumber: yup
@@ -29,24 +49,49 @@ interface RootAuthI {
 }
 
 const countriesData: Country[] = [
-  { name: 'Nigeria', code: '+234', displayCode: 'NG +234' },
+  {name: 'Nigeria', code: '+234', displayCode: 'NG +234'},
 ];
 
 export default function PhoneNumber({
   navigation,
 }: RootAuthI): React.JSX.Element {
-  const { fontScale, width } = useWindowDimensions();
+  const {fontScale, width} = useWindowDimensions();
   const [showPopup, setShowPopup] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedCountryName, setSelectedCountryName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [phoneNumberError, setPhoneNumberError] = useState('');
 
+  /*-- -- -- -- -- - --- -- */
+  const [showKeypad, setShowKeypad] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleKeypadToggle = () => {
+    setShowKeypad(prevValue => !prevValue);
+  };
+
+  const handleKeypadKeyPress = (value: string) => {
+    if (inputValue.length < 10) {
+      setInputValue(prevValue => prevValue + value);
+      setPhoneNumberError('Phone number must be 10 digits');
+    } else if (inputValue.length === 10) {
+      setPhoneNumberError('');
+    } else {
+      setPhoneNumberError('Phone number must be 10 digits');
+    }
+  };
+
+  const handleBackspace = () => {
+    setInputValue(prevValue => prevValue.slice(0, -1));
+  };
+
+  /*  -- ------- --- -- -*/
+
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
-  const renderCountryItem = ({ item }: { item: Country }) => (
+  const renderCountryItem = ({item}: {item: Country}) => (
     <Pressable
       onPress={() => {
         setSelectedCountry(item.displayCode);
@@ -55,7 +100,7 @@ export default function PhoneNumber({
       }}
       style={[
         styles.countryContainer,
-        selectedCountry === item.name && { backgroundColor: '#FFF' },
+        selectedCountry === item.name && {backgroundColor: '#FFF'},
       ]}>
       <NigeriaFlag />
       <MediumText>{item.name}</MediumText>
@@ -94,151 +139,114 @@ export default function PhoneNumber({
   return (
     <CustomView>
       <Header />
-      <ScrollView>
-        <AuthTitleText
-          text="Confirm your country code and input your phone number to continue."
-          title="Your Phone Number"
-          icon={<PhoneIcon />}
-          marginTop={24}
-        />
-        <Pressable
-          style={styles.countryButton}
-          onPress={() => {
-            console.log('win');
-            togglePopup(); 
-          }}>
-          <MediumText
-            style={[styles.countryButtonText, { fontSize: 15 / fontScale }]}>
-            {selectedCountry ? <Text> {selectedCountryName}</Text> : 'Country'}
-          </MediumText>
-          <ArrowForwardIcon color={Colors?.grayText} />
-        </Pressable>
 
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={showPopup}
-          onRequestClose={() => {
-            togglePopup();
-          }}>
-          <View style={styles.modalContainer}>
-            <View style={styles.popup}>
-              <View>
-                <MediumText
-                  style={[
-                    styles.countryButtonText,
-                    { fontSize: 15 / fontScale },
-                  ]}>
-                  Search
-                </MediumText>
-                <View style={styles.searchContainer}>
-                  <TextInput
-                    style={[styles.input, { flex: 1 }]}
-                    placeholder="Search"
-                    placeholderTextColor="#999"
-                  />
-                  <CircleIcon color={Colors.grayText} />
-                </View>
-              </View>
-              <FlatList
-                data={countriesData}
-                renderItem={renderCountryItem}
-                keyExtractor={item => item.code}
-              />
-            </View>
-          </View>
-        </Modal>
-        <BoldText
-          style={{
-            color: Colors?.grayText,
-            fontSize: 16 / fontScale,
-            marginBottom: 4,
-            marginTop: 32,
-          }}>
-          Phone Number
-        </BoldText>
-        <View>
-          <View style={[styles.inputText, { flexDirection: 'row', padding: 16 }]}>
-            <View style={styles.displayCode}>
-              <MediumText>{selectedCountry}</MediumText>
-            </View>
-            <BoldText style={{ color: Colors.grayText, fontSize: 16 }}>
-              {phoneNumber ? phoneNumber : 'Enter your Phone Number'}
-            </BoldText>
-          </View>
-        </View>
-
-        <LightText>
-          {phoneNumberError ? (
-            <LightText style={{ color: 'red' }}>{phoneNumberError}</LightText>
-          ) : null}
-        </LightText>
-        <View style={styles.buttonContainer}>
-          <Button
-            variant="primary"
-            isLarge={false}
-            isWide={false}
+      <View>
+        <Pressable onPress={() => setShowKeypad(false)}>
+          <AuthTitleText
+            text="Confirm your country code and input your phone number to continue."
+            title="Your Phone Number"
+            icon={<PhoneIcon />}
+            marginTop={24}
+          />
+          <Pressable
+            style={styles.countryButton}
             onPress={() => {
-              navigation.navigate('SetPassword');
+              console.log('win');
+              togglePopup();
             }}>
-            <MediumText style={styles.buttonText}>Continue</MediumText>
-            <ArrowRightIcon />
-          </Button>
-        </View>
-        <View>
-          <View style={styles.grid}>
-            {[
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              <MediumText
-                style={{
-                  // backgroundColor: Colors?.searchInput,
-                  padding: 29,
-                  textAlign: 'center',
-                }}
-                key="clear"
-                onPress={() => handleClearPin()}>
-                Clear all
-              </MediumText>,
-              0,
-              <TouchableOpacity
-                style={{
-                  //backgroundColor: Colors?.searchInput,
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                key="backspace"
-                onPress={handleDelete}>
-                <BackSpaceIcon />
-              </TouchableOpacity>,
-            ].map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => {
-                  if (typeof item === 'number') {
-                    handleKeyPress(item);
-                  }
-                }}
-                style={styles.gridItem}>
-                {typeof item === 'number' ? (
-                  <Text style={styles.gridItemText}>{item}</Text>
-                ) : (
-                  item
-                )}
-              </TouchableOpacity>
-            ))}
+            <MediumText
+              style={[styles.countryButtonText, {fontSize: 15 / fontScale}]}>
+              {selectedCountry ? (
+                <Text> {selectedCountryName}</Text>
+              ) : (
+                'Country'
+              )}
+            </MediumText>
+            <ArrowForwardIcon color={Colors?.grayText} />
+          </Pressable>
+
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={showPopup}
+            onRequestClose={() => {
+              togglePopup();
+            }}>
+            <View style={styles.modalContainer}>
+              <View style={styles.popup}>
+                <View>
+                  <MediumText
+                    style={[
+                      styles.countryButtonText,
+                      {fontSize: 15 / fontScale},
+                    ]}>
+                    Search
+                  </MediumText>
+                  <View style={styles.searchContainer}>
+                    <TextInput
+                      style={[styles.input, {flex: 1}]}
+                      placeholder="Search"
+                      placeholderTextColor="#999"
+                    />
+                    <CircleIcon color={Colors.grayText} />
+                  </View>
+                </View>
+                <FlatList
+                  data={countriesData}
+                  renderItem={renderCountryItem}
+                  keyExtractor={item => item.code}
+                />
+              </View>
+            </View>
+          </Modal>
+          <BoldText
+            style={{
+              color: Colors?.grayText,
+              fontSize: 16 / fontScale,
+              marginBottom: 4,
+              marginTop: 32,
+            }}>
+            Phone Number
+          </BoldText>
+          <View>
+            <View
+              style={[styles.inputText, {flexDirection: 'row', padding: 16}]}>
+              <View style={styles.displayCode}>
+                <MediumText>{selectedCountry}</MediumText>
+              </View>
+              <Pressable onPress={handleKeypadToggle}>
+                <BoldText style={{color: Colors.grayText, fontSize: 16}}>
+                  {inputValue ? inputValue : 'Enter your Phone Number'}
+                </BoldText>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </ScrollView>
+
+          <LightText>
+            {phoneNumberError ? (
+              <LightText style={{color: 'red'}}>{phoneNumberError}</LightText>
+            ) : null}
+          </LightText>
+          <View style={styles.buttonContainer}>
+            <Button
+              variant="primary"
+              isLarge={false}
+              isWide={false}
+              onPress={() => {
+                navigation.navigate('SetPassword');
+              }}>
+              <MediumText style={styles.buttonText}>Continue</MediumText>
+              <ArrowRightIcon />
+            </Button>
+          </View>
+        </Pressable>
+        <CustomNumberKeypad
+          isVisible={showKeypad}
+          onClose={handleKeypadToggle}
+          onKeyPress={handleKeypadKeyPress}
+          onBackspace={handleBackspace}
+        />
+      </View>
     </CustomView>
   );
 }

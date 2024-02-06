@@ -18,5 +18,5 @@ export const Colors = {
   authTextTitle: '#4B5563',
   searchInput: '#F3F4F6',
   balanceBlack: '#4B5563',
-  memojiBackground: '#F9FAFB'
+  memojiBackground: '#F9FAFB',
 };

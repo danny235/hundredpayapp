@@ -15,7 +15,7 @@ export default function MainTabs():React.JSX.Element {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: Colors.mordernBlack,
+        tabBarInactiveTintColor: Colors.modernBlack,
         tabBarLabelStyle: {
           fontSize: 12,
           letterSpacing: 0.5,
