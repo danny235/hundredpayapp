@@ -60,6 +60,7 @@ export default function SetPassword({
         onSubmit={async (values, actions) => {
           console.log(values);
           //navigation.navigate('ForgotPassword')
+          
         }}
         validationSchema={setPasswordSchema}>
         {formikProps => (

@@ -4,7 +4,6 @@ import {
   FlatList,
   Image,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleProp,
   View,
@@ -12,11 +11,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Colors} from '../../../components/Colors';
-import {
-  BoldText,
-  LightText,
-  MediumText,
-} from '../../../components/styles/styledComponents';
+import {BoldText, LightText, RegularText} from '../../../components/styles/styledComponents';
 import {RootStackParamList} from '../../../routes/AppStacks';
 import Action from './Action';
 import Balance from './Balance';
@@ -31,12 +26,13 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {useToast} from '../../../components/CustomToast/ToastContext';
 import {
   ArrowFrontIcon,
   CopyIcon,
   NotifictionIcon,
+  ScanIcon,
 } from '../../../components/SvgAssets';
-import CustomView from '../../../components/Views/CustomView';
 import SafeAreaViewHeader from '../../../components/Views/SafeAreaView';
 import Memojis from './Memojis';
 
@@ -83,7 +79,7 @@ export const CustomBackdrop: React.FC<CustomBackdropProps> = ({
 const trx = [
   {
     id: 1,
-    title: 'recieved',
+    title: 'From: Oscar',
     from: '984340',
     date: '5:45 PM, Aug 1, 2022',
     amount: '10,000',
@@ -91,7 +87,7 @@ const trx = [
   },
   {
     id: 2,
-    title: 'sent',
+    title: 'Paid: Market Square',
     from: '984340',
     date: '5:45 PM, Aug 1, 2022',
     amount: '10,000',
@@ -99,7 +95,7 @@ const trx = [
   },
   {
     id: 3,
-    title: 'recieved',
+    title: 'From: Brainy',
     from: '984340',
     date: '5:45 PM, Aug 1, 2022',
     amount: '10,000',
@@ -107,7 +103,7 @@ const trx = [
   },
   {
     id: 4,
-    title: 'sent',
+    title: 'Paid: Amazon',
     from: '984340',
     date: '5:45 PM, Aug 1, 2022',
     amount: '10,000',
@@ -116,8 +112,7 @@ const trx = [
 ];
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Home'
+  RootStackParamList
 >;
 
 interface HomeProps {
@@ -127,9 +122,10 @@ interface HomeProps {
 export default function Home({navigation}: HomeProps): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const [copiedText, setCopiedText] = useState('');
+  const {showToast} = useToast();
   const copyToClipboard = () => {
     Clipboard.setString('234gh6');
+    showToast('Copied successfully');
   };
   const [snapTo, setSnapTo] = useState(['38%', '40%']);
   const snapPoints = useMemo(() => snapTo, [snapTo]);
@@ -179,15 +175,21 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
               </Pressable>
             </View>
           </View>
-          <Pressable>
-            <NotifictionIcon />
-          </Pressable>
-        </View>
-        <Balance />
 
-        <Action 
-        onSendClick={()=>navigation.navigate('Pay' as never)}
-       // onSendClick={handlePresentModalPress} 
+          <View style={{flexDirection: "row", gap: 20}}>
+            <Pressable onPress={()=>navigation.navigate("Scan")}>
+              <ScanIcon />
+            </Pressable>
+            <Pressable>
+              <NotifictionIcon />
+            </Pressable>
+          </View>
+        </View>
+        <Balance onBalanceClick={handlePresentModalPress} />
+
+        <Action
+          onSendClick={() => navigation.navigate('Pay' as never)}
+    
         />
         <Memojis />
         <View
@@ -233,29 +235,7 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
       </ScrollView>
 
       {/* Send naira modal */}
-      <BottomSheetModalProvider>
-        <BottomSheetModal
-          ref={bottomSheetModalRef}
-          index={1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}
-          handleIndicatorStyle={{
-            borderWidth: 0,
-            borderColor: '',
-            width: '0%',
-          }}
-          enableContentPanningGesture={false}
-          backdropComponent={({animatedIndex, style}) => (
-            <CustomBackdrop
-              onPress={handlePresentModalClose}
-              animatedIndex={animatedIndex}
-              style={style}
-            />
-          )}
-          animateOnMount={true}>
-          <Icon name="x" />
-        </BottomSheetModal>
-      </BottomSheetModalProvider>
+      
     </SafeAreaViewHeader>
   );
 }

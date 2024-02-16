@@ -4,6 +4,7 @@ import {
   HomeScreen,
   OnboardingScreen,
   RootAuth,
+  ScanScreen,
   SettingsScreen,
   SignIn,
 } from '../screens';
@@ -15,9 +16,13 @@ import ForgotPassword from '../screens/authentication/ForgotPassword';
 import SecureCode from '../screens/authentication/SecureCode';
 import NewPassword from '../screens/authentication/NewPassword';
 import PayHome from '../screens/main/home/PayFlow/Pay';
+import SendPayment from '../screens/main/home/PayFlow/SendPayment';
 
 export type RootStackParamList = {
   Home: undefined;
+  Pay: undefined;
+  Scan: undefined;
+  SendPayment: undefined
   // Define other screens and their parameters here
 };
 
@@ -34,6 +39,8 @@ export function HomeStackScreen(): React.JSX.Element {
       }}>
       <HomeStack.Screen name="Dashboard" component={HomeScreen} />
       <HomeStack.Screen name="Pay" component={PayHome} />
+      <HomeStack.Screen name="Scan" component={ScanScreen} />
+      <HomeStack.Screen name="SendPayment" component={SendPayment} />
     </HomeStack.Navigator>
   );
 }
@@ -67,6 +74,11 @@ export default function NavigationContent(): React.JSX.Element {
         headerShown: false,
       }}>
       <Stack.Group>
+        <Stack.Screen
+          name="MainTabs"
+          options={{headerShown: false}}
+          component={MainTabs}
+        />
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="RootAuth" component={RootAuth} />
         <Stack.Screen name="SignIn" component={SignIn} />
@@ -77,11 +89,6 @@ export default function NavigationContent(): React.JSX.Element {
         <Stack.Screen name="SecureCode" component={SecureCode} />
         <Stack.Screen name="NewPassword" component={NewPassword} />
       </Stack.Group>
-      <Stack.Screen
-        name="MainTabs"
-        options={{headerShown: false}}
-        component={MainTabs}
-      />
     </Stack.Navigator>
   );
 }

@@ -16,10 +16,15 @@ import {
   ArrowFrontIcon,
   CircleIcon,
   ScanIcon,
+  ScanRedIcon,
 } from '../../../../components/SvgAssets';
 import Memojis from '../Memojis';
 import UserPayList from './UsersPayList';
 import {ScrollView} from 'react-native';
+import CustomView from '../../../../components/Views/CustomView';
+import CustomHeader from '../../../../components/headers/CustomHeaders';
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../../../routes/AppStacks';
 
 const validationSchema = yup.object().shape({
   recipientNameOrID: yup
@@ -28,7 +33,11 @@ const validationSchema = yup.object().shape({
     .required('Recipient Name or ID is required'),
 });
 
-export default function PayHome() {
+type PayHomeT = {
+  navigation: NavigationProp<RootStackParamList>
+}
+
+export default function PayHome({navigation}: PayHomeT) {
   const formikProps = useFormik({
     initialValues: {
       recipientNameOrID: '',
@@ -44,8 +53,8 @@ export default function PayHome() {
   const [submitted, setSubmitted] = useState(false); // State to track form submission
 
   return (
-    <SafeAreaViewHeader>
-      <PayHeaders title="Send Payment" />
+    <CustomView>
+      <CustomHeader text="Send payment" icon={<ScanRedIcon />} onPress={()=>navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <LightText style={styles.description}>
@@ -77,7 +86,7 @@ export default function PayHome() {
                 isLarge={false}
                 isWide={false}
                 onPress={() => {
-                  formikProps.handleSubmit();
+                  navigation.navigate("Scan")
                 }}>
                 <ScanIcon color="#fff" />
               </Button>
@@ -125,7 +134,7 @@ export default function PayHome() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaViewHeader>
+    </CustomView>
   );
 }
 

@@ -9,8 +9,10 @@ import {
   RegularText,
 } from '../../../components/styles/styledComponents';
 import {ArrowDownIcon, WalletIcon} from '../../../components/SvgAssets';
-
-export default function Balance(): React.JSX.Element {
+type Props = {
+  onBalanceClick: ()=> void
+}
+export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
   return (
     <View
@@ -20,6 +22,7 @@ export default function Balance(): React.JSX.Element {
         paddingTop: 16
       }}>
       <Pressable
+        onPress={onBalanceClick}
         style={{
           flexDirection: 'row',
           gap: 10,

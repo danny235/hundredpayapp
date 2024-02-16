@@ -12,7 +12,7 @@ import {BackSpaceIcon} from '../SvgAssets';
 import {MediumText} from '../styles/styledComponents';
 
 interface CustomNumberKeypadProps extends ModalProps {
-  onKeyPress?: (value: string) => void;
+  onKeyPress?: (value: string ) => void;
   isVisible: boolean;
   onClose?: (value: boolean) => void;
   onBackspace?: () => void;
@@ -71,11 +71,11 @@ const CustomNumberKeypad: React.FC<CustomNumberKeypadProps> = ({
       style={[
         {
           // justifyContent: 'flex-end',
-          height: height / 10,
+          height: height / 3,
           position: 'absolute',
           left: 0,
           right: 0,
-          backgroundColor: Colors.primary,
+          
         },
         {
           bottom: bottomPosition,
