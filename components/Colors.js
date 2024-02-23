@@ -19,4 +19,5 @@ export const Colors = {
   searchInput: '#F3F4F6',
   balanceBlack: '#4B5563',
   memojiBackground: '#F9FAFB',
+  iconColor: '#6B7280',
 };

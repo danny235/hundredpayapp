@@ -35,6 +35,10 @@ import {
 } from '../../../components/SvgAssets';
 import SafeAreaViewHeader from '../../../components/Views/SafeAreaView';
 import Memojis from './Memojis';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../app/store';
+import ChooseAccountBalance from '../../../components/ChooseAccountBalance/ChooseAccountBalance';
+import CustomView from '../../../components/Views/CustomView';
 
 interface CustomBackdropProps {
   animatedIndex: SharedValue<number>;
@@ -120,27 +124,23 @@ interface HomeProps {
 }
 
 export default function Home({navigation}: HomeProps): React.JSX.Element {
+  const {accountBalanceType} = useSelector((state: RootState) => state.user);
   const {fontScale} = useWindowDimensions();
+  const [showSwitchBalanceModal, setShowSwithBalanceModal] = useState(false)
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const {showToast} = useToast();
   const copyToClipboard = () => {
     Clipboard.setString('234gh6');
     showToast('Copied successfully');
   };
-  const [snapTo, setSnapTo] = useState(['38%', '40%']);
-  const snapPoints = useMemo(() => snapTo, [snapTo]);
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const handlePresentModalClose = useCallback(() => {
-    bottomSheetModalRef.current?.dismiss();
-  }, []);
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+
+
+  const handleShowModal = () => {
+    setShowSwithBalanceModal(true)
+  }
 
   return (
-    <SafeAreaViewHeader>
+    <CustomView>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
@@ -185,11 +185,10 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
             </Pressable>
           </View>
         </View>
-        <Balance onBalanceClick={handlePresentModalPress} />
+        <Balance  onBalanceClick={handleShowModal} />
 
         <Action
           onSendClick={() => navigation.navigate('Pay' as never)}
-    
         />
         <Memojis />
         <View
@@ -235,7 +234,9 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
       </ScrollView>
 
       {/* Send naira modal */}
+
+      {showSwitchBalanceModal && <ChooseAccountBalance onHide={()=>setShowSwithBalanceModal(false)} />}
       
-    </SafeAreaViewHeader>
+    </CustomView>
   );
 }

@@ -1,33 +1,32 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { Colors } from '../components/Colors';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import { DiscoverStackScreen, HomeStackScreen, SettingsStackScreen } from './AppStacks';
-import { DiscoverIcon, HomeIcon, SettingsIcon } from '../components/SvgAssets';
-
-
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import React from 'react';
+import {Colors} from '../components/Colors';
+import {DiscoverIcon, HomeIcon, SettingsIcon} from '../components/SvgAssets';
+import {
+  DiscoverStackScreen,
+  HomeStackScreen,
+  SettingsStackScreen,
+} from './AppStacks';
 
 const Tab = createBottomTabNavigator();
 
-export default function MainTabs():React.JSX.Element {
+export default function MainTabs(): React.JSX.Element {
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: Colors.modernBlack,
+        tabBarInactiveTintColor: Colors.grayText,
         tabBarLabelStyle: {
           fontSize: 12,
           letterSpacing: 0.5,
           fontFamily: 'SpaceGrotesk-Bold',
-        }
+        },
       }}>
       <Tab.Screen
         options={({route}) => ({
           headerShown: false,
-          tabBarIcon: ({color, size}) => (
-            <HomeIcon  color={color}  />
-          ),
+          tabBarIcon: ({color, size}) => <HomeIcon color={color} />,
           tabBarStyle: (route => {
             const routeName = getFocusedRouteNameFromRoute(route) ?? '';
             console.log(routeName);
@@ -42,9 +41,7 @@ export default function MainTabs():React.JSX.Element {
       <Tab.Screen
         options={({route}) => ({
           headerShown: false,
-          tabBarIcon: ({color, size}) => (
-            <DiscoverIcon  color={color} />
-          ),
+          tabBarIcon: ({color, size}) => <DiscoverIcon color={color} />,
           tabBarStyle: (route => {
             const routeName = getFocusedRouteNameFromRoute(route) ?? '';
             console.log(routeName);
@@ -59,9 +56,7 @@ export default function MainTabs():React.JSX.Element {
       <Tab.Screen
         options={({route}) => ({
           headerShown: false,
-          tabBarIcon: ({color, size}) => (
-            <SettingsIcon  color={color}  />
-          ),
+          tabBarIcon: ({color, size}) => <SettingsIcon color={color} />,
           tabBarStyle: (route => {
             const routeName = getFocusedRouteNameFromRoute(route) ?? '';
             console.log(routeName);

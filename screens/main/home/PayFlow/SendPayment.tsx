@@ -25,6 +25,9 @@ import {
 } from '../../../../components/styles/styledComponents';
 import {RootStackParamList} from '../../../../routes/AppStacks';
 import {addCommas} from '../../../../utils';
+import ChooseAccountBalance from '../../../../components/ChooseAccountBalance/ChooseAccountBalance';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../app/store';
 
 type SendPaymentT = {
   navigation: NavigationProp<RootStackParamList>;
@@ -33,6 +36,8 @@ type SendPaymentT = {
 export default function SendPayment({navigation}: SendPaymentT) {
   const {fontScale} = useWindowDimensions();
   const [amount, setAmount] = useState<number>(0);
+  const [showSwitchBalanceModal, setShowSwithBalanceModal] = useState(false);
+  const {accountBalanceType} = useSelector((state: RootState) => state.user);
   /*-- -- -- -- -- - --- -- */
   const [showKeypad, setShowKeypad] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -62,6 +67,11 @@ export default function SendPayment({navigation}: SendPaymentT) {
   useEffect(()=>{
     setShowKeypad(true)
   },[])
+
+    const handleShowModal = () => {
+      setShowSwithBalanceModal(true);
+    };
+
   return (
     <CustomView>
       <CustomHeader
@@ -70,20 +80,22 @@ export default function SendPayment({navigation}: SendPaymentT) {
         onPress={() => navigation.goBack()}
       />
 
-      <Pressable onPress={()=>setShowKeypad(false)} style={styles.payContainer}>
+      <Pressable
+        onPress={() => setShowKeypad(false)}
+        style={styles.payContainer}>
         <View style={{gap: 10, alignItems: 'center', justifyContent: 'center'}}>
           <View style={styles.avatarWrapper}>
             <Image style={styles.avatarImg} source={UserAvatar} />
           </View>
           <View style={styles.userTextWrapper}>
-            <LightText style={{fontSize: 15 / fontScale}}>
+            <LightText style={{fontSize: 15 / fontScale,}}>
               Send money to
             </LightText>
-            <MediumText style={{fontSize: 15 / fontScale}}>Oscar .R</MediumText>
+            <MediumText style={{fontSize: 15 / fontScale, color: Colors.iconColor}}>Daniel Barima</MediumText>
           </View>
         </View>
 
-        <Pressable style={styles.payWithToggle}>
+        <Pressable onPress={handleShowModal} style={styles.payWithToggle}>
           <LightText
             style={{
               fontSize: 15 / fontScale,
@@ -94,7 +106,7 @@ export default function SendPayment({navigation}: SendPaymentT) {
             Pay with
           </LightText>
           <BoldText style={{fontSize: 15 / fontScale}}>
-            ₦ NGN - 500,000
+            {accountBalanceType === 'naira' ? '₦' : '$PAY'}
           </BoldText>
           <ArrowDownIcon width={25} height={25} />
         </Pressable>
@@ -116,7 +128,7 @@ export default function SendPayment({navigation}: SendPaymentT) {
         </View>
 
         <View style={{marginLeft: 'auto'}}>
-          <Button variant="primary" isLarge={false} isWide={false}>
+          <Button variant="primary" isLarge={false} isWide={false} onPress={()=>navigation.navigate("ConfirmPayment")}>
             <MediumText style={{color: Colors.white, fontSize: 15 / fontScale}}>
               Pay
             </MediumText>
@@ -130,6 +142,9 @@ export default function SendPayment({navigation}: SendPaymentT) {
         onKeyPress={handleKeypadKeyPress}
         onBackspace={handleBackspace}
       />
+      {showSwitchBalanceModal && (
+        <ChooseAccountBalance onHide={() => setShowSwithBalanceModal(false)} />
+      )}
     </CustomView>
   );
 }

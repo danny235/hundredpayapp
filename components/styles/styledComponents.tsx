@@ -37,22 +37,27 @@ const Indicator = styled.View<IndicatorT>`
 
 const BoldText = styled.Text`
   font-family: SpaceGrotesk-Bold;
+  color: ${Colors.balanceBlack}
 `;
 
 const RegularText = styled.Text`
     font-family: SpaceGrotesk-Regular;
+    color: ${Colors.balanceBlack}
 `;
 
 const LightText = styled.Text`
     font-family: SpaceGrotesk-Light;
+    color: ${Colors.balanceBlack}
 `;
 
 const MediumText = styled.Text`
     font-family: SpaceGrotesk-Medium;
+    color: ${Colors.balanceBlack}
 `;
 
 const SemiBoldText = styled.Text`
     font-family: SpaceGrotesk-SemiBold;
+    color: ${Colors.balanceBlack}
 `;
 
 

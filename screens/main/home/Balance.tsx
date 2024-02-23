@@ -9,17 +9,20 @@ import {
   RegularText,
 } from '../../../components/styles/styledComponents';
 import {ArrowDownIcon, WalletIcon} from '../../../components/SvgAssets';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../app/store';
 type Props = {
   onBalanceClick: ()=> void
 }
 export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
+  const {accountBalanceType} = useSelector((state: RootState) => state.user);
   return (
     <View
       style={{
         gap: 20,
         paddingBottom: 40,
-        paddingTop: 16
+        paddingTop: 16,
       }}>
       <Pressable
         onPress={onBalanceClick}
@@ -48,9 +51,11 @@ export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
       <View style={{gap: 10}}>
         <BoldText
           style={{fontSize: 29 / fontScale, color: Colors.balanceBlack}}>
-          ₦ 60,000.00
+          {accountBalanceType === 'naira' ? '₦ 60,000.00' : '100,000$PAY'}
         </BoldText>
-        <RegularText style={{color: Colors.grayText}}>100,000$PAY</RegularText>
+        <RegularText style={{color: Colors.grayText}}>
+          {accountBalanceType === 'pay-token' ? ' ₦ 60,000.00' : '100,000$PAY'}
+        </RegularText>
       </View>
     </View>
   );

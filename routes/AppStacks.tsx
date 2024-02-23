@@ -3,10 +3,12 @@ import {
   DiscoverScreen,
   HomeScreen,
   OnboardingScreen,
+  PaymentCompleteScreen,
   RootAuth,
   ScanScreen,
   SettingsScreen,
   SignIn,
+  TransactionPinScreen,
 } from '../screens';
 import MainTabs from './MainTabs';
 import CreateAccount from '../screens/authentication/CreateAccount';
@@ -17,12 +19,17 @@ import SecureCode from '../screens/authentication/SecureCode';
 import NewPassword from '../screens/authentication/NewPassword';
 import PayHome from '../screens/main/home/PayFlow/Pay';
 import SendPayment from '../screens/main/home/PayFlow/SendPayment';
+import ConfirmPayment from '../screens/main/home/PayFlow/ConfirmPayment';
 
 export type RootStackParamList = {
   Home: undefined;
   Pay: undefined;
   Scan: undefined;
-  SendPayment: undefined
+  SendPayment: undefined;
+  ConfirmPayment: undefined;
+  TransactionPin: undefined;
+  PaymentComplete: undefined;
+  
   // Define other screens and their parameters here
 };
 
@@ -41,6 +48,9 @@ export function HomeStackScreen(): React.JSX.Element {
       <HomeStack.Screen name="Pay" component={PayHome} />
       <HomeStack.Screen name="Scan" component={ScanScreen} />
       <HomeStack.Screen name="SendPayment" component={SendPayment} />
+      <HomeStack.Screen name="ConfirmPayment" component={ConfirmPayment} />
+      <HomeStack.Screen name="TransactionPin" component={TransactionPinScreen} />
+      <HomeStack.Screen name="PaymentComplete" component={PaymentCompleteScreen} />
     </HomeStack.Navigator>
   );
 }

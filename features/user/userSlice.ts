@@ -49,6 +49,9 @@ export const userSlice = createSlice({
     logOut: state => {
       state.token = '';
     },
+    updateAccountBalanceType: (state, action) => {
+        state.accountBalanceType = action.payload
+    }
  
   },
 });
@@ -62,6 +65,7 @@ export const {
   toggleIsLoggedIn,
   updateUserOnboarded,
   logOut,
+  updateAccountBalanceType
   
 } = userSlice.actions;
 
