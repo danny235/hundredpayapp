@@ -1,7 +1,10 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
+  AssetScreen,
   DiscoverScreen,
+  GenerateRequestLinkScreen,
   HomeScreen,
+  NotificationScreen,
   OnboardingScreen,
   PaymentCompleteScreen,
   RootAuth,
@@ -29,6 +32,8 @@ export type RootStackParamList = {
   ConfirmPayment: undefined;
   TransactionPin: undefined;
   PaymentComplete: undefined;
+  GenerateCode: undefined;
+  Notification: undefined
   
   // Define other screens and their parameters here
 };
@@ -37,6 +42,7 @@ const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 const DiscoverStack = createNativeStackNavigator();
+const AssetStack = createNativeStackNavigator();
 
 export function HomeStackScreen(): React.JSX.Element {
   return (
@@ -51,6 +57,7 @@ export function HomeStackScreen(): React.JSX.Element {
       <HomeStack.Screen name="ConfirmPayment" component={ConfirmPayment} />
       <HomeStack.Screen name="TransactionPin" component={TransactionPinScreen} />
       <HomeStack.Screen name="PaymentComplete" component={PaymentCompleteScreen} />
+      <HomeStack.Screen name="Notification" component={NotificationScreen} />
     </HomeStack.Navigator>
   );
 }
@@ -62,6 +69,7 @@ export function DiscoverStackScreen(): React.JSX.Element {
         headerShown: false,
       }}>
       <DiscoverStack.Screen name="DiscoverStack" component={DiscoverScreen} />
+      <DiscoverStack.Screen name="GenerateCode" component={GenerateRequestLinkScreen} />
     </DiscoverStack.Navigator>
   );
 }
@@ -74,6 +82,17 @@ export function SettingsStackScreen(): React.JSX.Element {
       }}>
       <SettingsStack.Screen name="SettingsStack" component={SettingsScreen} />
     </SettingsStack.Navigator>
+  );
+}
+
+export function AssetStackScreen(): React.JSX.Element {
+  return (
+    <AssetStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <AssetStack.Screen name="AssetStack" component={AssetScreen} />
+    </AssetStack.Navigator>
   );
 }
 

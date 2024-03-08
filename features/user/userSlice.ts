@@ -16,6 +16,7 @@ interface UserState {
   userOnboarded: boolean;
   accountBalanceType: AccountBalanceType;
   userProfile: UserProfile; // You might want to define a proper type for userProfile
+  showAccountBalance: boolean;
 }
 
 const initialState: UserState = {
@@ -28,6 +29,7 @@ const initialState: UserState = {
     email: "danielb@gmail.com",
     payId: "PsfEi"
   },
+  showAccountBalance: true
 };
 
 export const userSlice = createSlice({
@@ -51,6 +53,9 @@ export const userSlice = createSlice({
     },
     updateAccountBalanceType: (state, action) => {
         state.accountBalanceType = action.payload
+    },
+    updateShowAccountBalance: (state) => {
+      state.showAccountBalance = !state.showAccountBalance
     }
  
   },
@@ -65,8 +70,8 @@ export const {
   toggleIsLoggedIn,
   updateUserOnboarded,
   logOut,
-  updateAccountBalanceType
-  
+  updateAccountBalanceType,
+  updateShowAccountBalance
 } = userSlice.actions;
 
 export default userSlice.reducer;

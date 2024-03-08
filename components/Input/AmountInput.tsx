@@ -10,9 +10,9 @@ import {
 import styled from 'styled-components/native';
 import {Colors} from '../Colors';
 import {MediumText, RegularText} from '../styles/styledComponents';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-interface InputProps extends TextInputProps {
+interface AmountInputProps extends TextInputProps {
   label: string;
   formikProps: any;
   formikKey: string;
@@ -29,43 +29,49 @@ const StyledInput = styled.TextInput<{error?: boolean}>`
   background-color: ${Colors.white};
 `;
 
-function Input({
+const formatNumberWithCommas = (number: number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
+const AmountInput: React.FC<AmountInputProps> = ({
   label,
   formikProps,
   formikKey,
-  onChangeText,
   ...rest
-}: InputProps): React.JSX.Element {
+}) => {
+  const inputStyles: any = {};
   const {fontScale} = useWindowDimensions();
 
-   const scrollRef = useRef<KeyboardAwareScrollView>(null);
+  if (formikProps.touched[formikKey] && formikProps.errors[formikKey]) {
+    inputStyles.borderColor = 'red';
+  }
 
-   const scrollToInput = (reactNode: any) => {
-     if (scrollRef.current) {
-       scrollRef.current.scrollToFocusedInput(reactNode);
-     }
-   };
+  const handleAmountChange = (text: string) => {
+    // Remove commas and other non-numeric characters
+    const cleanedText = text.replace(/[^0-9.]/g, '');
 
-   const handleInputFocus = (
-     event: NativeSyntheticEvent<TextInputFocusEventData>,
-   ) => {
-     scrollToInput(event.target);
-   };
+    // Format the number with commas
+    const formattedAmount = formatNumberWithCommas(Number(cleanedText));
+
+    // Update the Formik field value
+    formikProps.setFieldValue(formikKey, formattedAmount);
+    formikProps.handleChange(formikKey);
+  };
 
   return (
-    <FieldWrapper formikKey={formikKey} formikProps={formikProps} label={label}>
+    <FieldWrapper label={label} formikProps={formikProps} formikKey={formikKey}>
       <StyledInput
-        onChangeText={
-          onChangeText ? onChangeText : formikProps.handleChange(formikKey)
-        }
-        // onFocus={handleInputFocus}
+        value={formikProps.values[formikKey]}
+        onChangeText={handleAmountChange}
         onBlur={formikProps.handleBlur(formikKey)}
         error={formikProps.touched[formikKey] && formikProps.errors[formikKey]}
+        style={inputStyles}
         {...rest}
+        // selectionColor={Colors.secondary}
       />
     </FieldWrapper>
   );
-}
+};
 
 interface FieldWrapperProps {
   children: ReactNode;
@@ -84,7 +90,8 @@ function FieldWrapper({
 
   return (
     <View style={{gap: 10}}>
-      <MediumText style={{fontSize: 15 / fontScale, color: Colors?.balanceBlack}}>
+      <MediumText
+        style={{fontSize: 15 / fontScale, color: Colors?.balanceBlack}}>
         {label}
       </MediumText>
       {children}
@@ -96,11 +103,32 @@ function FieldWrapper({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   error: {
-    marginBottom: 6,
+    marginBottom: 20,
     height: 17.5,
     color: 'red',
+    fontFamily: 'DMSans-Regular',
+  },
+  input: {
+    padding: 10,
+    marginBottom: 3,
+  },
+  inputContainer: {
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
   },
 });
 
-export default Input;
+export default AmountInput;

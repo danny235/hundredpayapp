@@ -85,7 +85,7 @@ const trx = [
     id: 1,
     title: 'From: Oscar',
     from: '984340',
-    date: '5:45 PM, Aug 1, 2022',
+    date: '2:45pm',
     amount: '10,000',
     status: 'successful',
   },
@@ -93,7 +93,7 @@ const trx = [
     id: 2,
     title: 'Paid: Market Square',
     from: '984340',
-    date: '5:45 PM, Aug 1, 2022',
+    date: '2:45pm',
     amount: '10,000',
     status: 'successful',
   },
@@ -101,7 +101,7 @@ const trx = [
     id: 3,
     title: 'From: Brainy',
     from: '984340',
-    date: '5:45 PM, Aug 1, 2022',
+    date: '2:45pm',
     amount: '10,000',
     status: 'successful',
   },
@@ -109,7 +109,7 @@ const trx = [
     id: 4,
     title: 'Paid: Amazon',
     from: '984340',
-    date: '5:45 PM, Aug 1, 2022',
+    date: '2:45pm',
     amount: '10,000',
     status: 'failed',
   },
@@ -141,7 +141,7 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
 
   return (
     <CustomView>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{paddingBottom: 40}} showsVerticalScrollIndicator={false}>
         <View
           style={{
             flexDirection: 'row',
@@ -180,12 +180,12 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
             <Pressable onPress={()=>navigation.navigate("Scan")}>
               <ScanIcon />
             </Pressable>
-            <Pressable>
+            <Pressable onPress={()=>navigation.navigate("Notification")}>
               <NotifictionIcon />
             </Pressable>
           </View>
         </View>
-        <Balance  onBalanceClick={handleShowModal} />
+        <Balance   />
 
         <Action
           onSendClick={() => navigation.navigate('Pay' as never)}

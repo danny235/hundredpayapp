@@ -7,6 +7,7 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import {ImagePickerResponse, OptionsCommon, launchImageLibrary} from 'react-native-image-picker';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   Camera,
@@ -40,6 +41,12 @@ function Scan({navigation}: Props) {
   const cameraRef = useRef<Camera>(null);
   const [isInitialised, setIsInitialised] = useState(false);
 
+  const options: OptionsCommon = {
+    mediaType: 'photo',
+    includeExtra: true,
+
+  };
+
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
     onCodeScanned: codes => {
@@ -65,8 +72,14 @@ function Scan({navigation}: Props) {
     setIsCameraInitialized(true);
   }, [isCameraInitialized]);
 
-  const toggleCamera = async () => {
+  const toggleCamera = () => {
     setFlashOn(!flashOn);
+  };
+
+  const launchGallery = async () => {
+    // You can also use as a promise without 'callback':
+    const result:ImagePickerResponse = await launchImageLibrary(options);
+    console.log(result.assets, "from line 82");
   };
 
   const handleCameraError = (e: any) => {
@@ -170,7 +183,7 @@ function Scan({navigation}: Props) {
               justifyContent: 'space-between',
               paddingHorizontal: 70,
             }}>
-            <Pressable style={[styles.ctaBtns, {}]}>
+            <Pressable onPress={launchGallery} style={[styles.ctaBtns, {}]}>
               <GalleryIcon />
             </Pressable>
 

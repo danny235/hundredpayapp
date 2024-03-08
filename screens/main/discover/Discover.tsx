@@ -4,8 +4,14 @@ import CustomView from '../../../components/Views/CustomView'
 import { ArrowForwardIcon,  DiscoverIcon, LinkIcon } from '../../../components/SvgAssets'
 import { BoldText, MediumText, RegularText } from '../../../components/styles/styledComponents'
 import { Colors } from '../../../components/Colors'
+import { NavigationProp } from '@react-navigation/native'
+import { RootStackParamList } from '../../../routes/AppStacks'
 
-export default function Discover(): React.JSX.Element {
+type DiscoverT = {
+  navigation: NavigationProp<RootStackParamList>;
+};
+
+export default function Discover({navigation}: DiscoverT): React.JSX.Element {
   const {fontScale} = useWindowDimensions()
   return (
     <CustomView>
@@ -18,7 +24,7 @@ export default function Discover(): React.JSX.Element {
 
       <View style={{gap: 20}}>
         <Pressable
-          style={styles.discoverCTA}>
+          style={styles.discoverCTA} onPress={()=>navigation.navigate("GenerateCode")}>
           <LinkIcon />
           <View style={{gap: 10, flexShrink: 1}}>
             <MediumText style={{fontSize: 17 / fontScale}}>

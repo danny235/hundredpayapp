@@ -1,14 +1,12 @@
 import React from 'react';
 import {Pressable, View, useWindowDimensions} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {Colors} from '../../../components/Colors';
+import {PayIcon, RecieveIcon} from '../../../components/SvgAssets';
 import {
   BoldText,
   LightText,
-  MediumText,
   RegularText,
 } from '../../../components/styles/styledComponents';
-import {PayIcon, RecieveIcon} from '../../../components/SvgAssets';
 
 type TransactionItemT = {
   id: number;
@@ -31,7 +29,7 @@ export default function TransactionItem({
     <Pressable style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
       <View style={{gap: 4}}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-          {item.title === 'sent' ? (
+          {item.title.includes("Paid")  ? (
             <PayIcon />
           ) : (
             <RecieveIcon color={Colors.balanceBlack} />
@@ -45,14 +43,21 @@ export default function TransactionItem({
             {item.title}
           </BoldText>
         </View>
-        <MediumText style={{fontSize: 14 / fontScale, color: Colors.grayText}}>
-          {item.title === 'sent'
-            ? `To: ID ${item.from}`
-            : `From: ID ${item.from}`}
-        </MediumText>
-        <LightText style={{fontSize: 13 / fontScale, color: Colors.grayText}}>
-          {item.date}
-        </LightText>
+        <View style={{flexDirection: 'row', gap: 10}}>
+          <LightText
+            style={{
+              fontSize: 14 / fontScale,
+              color: Colors.grayText,
+              borderRightColor: Colors.ash,
+              borderRightWidth: 1,
+              paddingRight: 10,
+            }}>
+            ID: {item.from}
+          </LightText>
+          <LightText style={{fontSize: 14 / fontScale, color: Colors.grayText}}>
+            {item.date}
+          </LightText>
+        </View>
       </View>
 
       <View style={{marginLeft: 'auto', justifyContent: 'flex-end'}}>

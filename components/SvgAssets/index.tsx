@@ -1,7 +1,5 @@
 import React from 'react';
-import {ClipPath, Defs, Path, Rect, Svg, G} from 'react-native-svg';
-
-
+import {ClipPath, Defs, G, Path, Rect, Svg} from 'react-native-svg';
 
 interface Props {
   width?: number;
@@ -9,7 +7,6 @@ interface Props {
   color?: string;
   onPress?: () => void;
 }
-
 
 export const ArrowRightIcon = ({
   width = 20,
@@ -195,7 +192,6 @@ export const CheckVerify = ({width = 20, height = 20, color = '#9CA3AF'}) => {
   );
 };
 
-
 export const BackSpaceIcon = ({onPress, color = '#F20831'}: Props) => {
   return (
     <Svg
@@ -216,7 +212,6 @@ export const BackSpaceIcon = ({onPress, color = '#F20831'}: Props) => {
     </Svg>
   );
 };
-
 
 export const NigeriaFlag = ({width = 24, height = 24}: Props) => {
   return (
@@ -262,13 +257,7 @@ export const EyeLineIcon = ({
   color = '#6B7280',
 }: Props) => {
   return (
-
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Path
         d="M12.1092 7.8916L7.89258 12.1083C7.35091 11.5666 7.01758 10.8249 7.01758 9.99993C7.01758 8.34993 8.35091 7.0166 10.0009 7.0166C10.8259 7.0166 11.5676 7.34994 12.1092 7.8916Z"
         stroke={color}
@@ -388,7 +377,11 @@ export const EyeIcon = ({
   );
 };
 
-export const HomeIcon = ({width = 24, height = 24, color = '#F20831'}: Props) => {
+export const HomeIcon = ({
+  width = 24,
+  height = 24,
+  color = '#F20831',
+}: Props) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
       <Path
@@ -401,14 +394,13 @@ export const HomeIcon = ({width = 24, height = 24, color = '#F20831'}: Props) =>
   );
 };
 
-export const DiscoverIcon = ({width = 24, height = 24, color = '#9CA3AF'}: Props) => {
+export const DiscoverIcon = ({
+  width = 24,
+  height = 24,
+  color = '#9CA3AF',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-    >
+    <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
       <Path
         d="M17.8011 2.1L7.87107 4.59C6.42107 4.95 4.95107 6.42 4.59107 7.87L2.10107 17.8C1.35107 20.8 3.19107 22.65 6.20107 21.9L16.1311 19.42C17.5711 19.06 19.0511 17.58 19.4111 16.14L21.9011 6.2C22.6511 3.2 20.8011 1.35 17.8011 2.1Z"
         stroke={color}
@@ -428,14 +420,13 @@ export const DiscoverIcon = ({width = 24, height = 24, color = '#9CA3AF'}: Props
   );
 };
 
-export const SettingsIcon = ({width=24, height=24, color="#9CA3AF"}: Props) => {
+export const SettingsIcon = ({
+  width = 24,
+  height = 24,
+  color = '#9CA3AF',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
       <Path
         opacity="0.34"
         d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
@@ -455,16 +446,15 @@ export const SettingsIcon = ({width=24, height=24, color="#9CA3AF"}: Props) => {
       />
     </Svg>
   );
-}
+};
 
-export const NotifictionIcon = ({width=24, height=24, color="#6B7280"}: Props) => {
+export const NotifictionIcon = ({
+  width = 24,
+  height = 24,
+  color = '#6B7280',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
       <Path
         opacity="0.4"
         d="M12 6.43994V9.76994"
@@ -489,7 +479,7 @@ export const NotifictionIcon = ({width=24, height=24, color="#6B7280"}: Props) =
       />
     </Svg>
   );
-}
+};
 
 export const CopyIcon = ({width = 16, height = 16, color = '#9CA3AF'}) => {
   return (
@@ -511,14 +501,13 @@ export const CopyIcon = ({width = 16, height = 16, color = '#9CA3AF'}) => {
   );
 };
 
-export const WalletIcon = ({width = 20, height = 20, color = '#F20831'}: Props) => {
+export const WalletIcon = ({
+  width = 20,
+  height = 20,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Path
         opacity="0.4"
         d="M10.832 9.29175H5.83203"
@@ -553,14 +542,13 @@ export const WalletIcon = ({width = 20, height = 20, color = '#F20831'}: Props) 
   );
 };
 
-export const ArrowDownIcon = ({width = 16, height = 16, color = '#9CA3AF'}: Props) => {
+export const ArrowDownIcon = ({
+  width = 16,
+  height = 16,
+  color = '#9CA3AF',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 16 16"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 16 16" fill="none">
       <Path
         opacity="0.4"
         d="M10.3218 8.82004L7.79512 5.45337H4.05512C3.41512 5.45337 3.09512 6.2267 3.54845 6.68004L7.00179 10.1334C7.55512 10.6867 8.45512 10.6867 9.00845 10.1334L10.3218 8.82004Z"
@@ -595,14 +583,13 @@ export const ArrowFrontIcon = ({
   );
 };
 
-export const PayIcon = ({width = 20, height = 20, color = '#F20831'}: Props) => {
+export const PayIcon = ({
+  width = 20,
+  height = 20,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <G opacity="0.4">
         <Path
           d="M10.832 9.16658L17.6654 2.33325"
@@ -630,14 +617,13 @@ export const PayIcon = ({width = 20, height = 20, color = '#F20831'}: Props) => 
   );
 };
 
-export const RecieveIcon = ({width = 20, height = 20, color = '#F20831'}: Props) => {
+export const RecieveIcon = ({
+  width = 20,
+  height = 20,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <G opacity="0.4">
         <Path
           d="M18.3333 1.66675L11.5 8.50008"
@@ -665,7 +651,11 @@ export const RecieveIcon = ({width = 20, height = 20, color = '#F20831'}: Props)
   );
 };
 
-export const ScanIcon = ({width = 24, height = 24, color = '#9CA3AF'}: Props) => {
+export const ScanIcon = ({
+  width = 24,
+  height = 24,
+  color = '#9CA3AF',
+}: Props) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
       <Path
@@ -716,7 +706,11 @@ export const ScanIcon = ({width = 24, height = 24, color = '#9CA3AF'}: Props) =>
   );
 };
 
-export const ScanRedIcon = ({width = 24, height = 24, color = '#F20831'}: Props) => {
+export const ScanRedIcon = ({
+  width = 24,
+  height = 24,
+  color = '#F20831',
+}: Props) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Path
@@ -755,14 +749,13 @@ export const ScanRedIcon = ({width = 24, height = 24, color = '#F20831'}: Props)
   );
 };
 
-export const ScanWhiteIcon = ({width = 45, height = 45, color = "white"}: Props) => {
+export const ScanWhiteIcon = ({
+  width = 45,
+  height = 45,
+  color = 'white',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 40 40"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 40 40" fill="none">
       <Path
         opacity="0.4"
         d="M4.61536 16.6666C3.8987 16.6666 3.33203 16.0999 3.33203 15.3833V11.5333C3.33203 7.01659 7.01536 3.33325 11.532 3.33325H15.382C16.0987 3.33325 16.6654 3.89992 16.6654 4.61659C16.6654 5.33325 16.0987 5.89992 15.382 5.89992H11.532C8.41536 5.89992 5.8987 8.43325 5.8987 11.5333V15.3833C5.8987 16.0999 5.31536 16.6666 4.61536 16.6666Z"
@@ -798,14 +791,13 @@ export const ScanWhiteIcon = ({width = 45, height = 45, color = "white"}: Props)
   );
 };
 
-export const GalleryIcon = ({width = 35, height = 35, color = 'white'}: Props) => {
+export const GalleryIcon = ({
+  width = 35,
+  height = 35,
+  color = 'white',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 36 36"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 36 36" fill="none">
       <Path
         opacity="0.4"
         d="M32.2839 12.1897V21.071L29.9068 19.0293C28.7693 18.0522 26.9318 18.0522 25.7943 19.0293L19.7276 24.2355C18.5901 25.2126 16.7526 25.2126 15.6151 24.2355L15.1193 23.8272C14.0839 22.923 12.4359 22.8355 11.2693 23.623L4.09427 28.4355L3.93385 28.5522C3.39427 27.3855 3.11719 26.0001 3.11719 24.4105V12.1897C3.11719 6.88138 6.28177 3.7168 11.5901 3.7168H23.8109C29.1193 3.7168 32.2839 6.88138 32.2839 12.1897Z"
@@ -823,14 +815,13 @@ export const GalleryIcon = ({width = 35, height = 35, color = 'white'}: Props) =
   );
 };
 
-export const BulbRedIcon = ({width = 35, height = 35, color = '#F20831'}: Props) => {
+export const BulbRedIcon = ({
+  width = 35,
+  height = 35,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 35 35"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 35 35" fill="none">
       <Path
         opacity="0.3"
         d="M28.0141 9.27496C26.4974 6.21246 23.5661 3.95204 20.1682 3.20829C16.6099 2.42079 12.9641 3.26662 10.1786 5.51245C7.37865 7.7437 5.78906 11.0833 5.78906 14.6562C5.78906 18.4333 8.04948 22.3854 11.462 24.675V25.8854C11.4474 26.2937 11.4328 26.9208 11.9286 27.4312C12.4391 27.9562 13.1974 28.0145 13.7953 28.0145H21.2766C22.0641 28.0145 22.662 27.7958 23.0703 27.3875C23.6245 26.8187 23.6099 26.0895 23.5953 25.6958V24.675C28.1161 21.627 30.9599 15.1958 28.0141 9.27496Z"
@@ -847,7 +838,6 @@ export const BulbRedIcon = ({width = 35, height = 35, color = '#F20831'}: Props)
     </Svg>
   );
 };
-
 
 export const BulbIcon = ({width = 35, height = 35, color = 'white'}: Props) => {
   return (
@@ -869,14 +859,13 @@ export const BulbIcon = ({width = 35, height = 35, color = 'white'}: Props) => {
   );
 };
 
-export const PaySIcon = ({width = 33, height = 19, color = '#F20831'}: Props) => {
+export const PaySIcon = ({
+  width = 33,
+  height = 19,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 30 16"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 30 16" fill="none">
       <Path
         d="M21.7222 5.31413C20.4749 5.31413 19.3936 7.00897 19.2294 8.9752C19.1271 10.2013 19.6311 10.987 20.388 10.987C21.6508 10.987 22.7282 9.32252 22.8981 7.32592C22.9947 6.10936 22.4927 5.31413 21.7222 5.31413Z"
         fill="#F20831"
@@ -893,18 +882,17 @@ export const PaySIcon = ({width = 33, height = 19, color = '#F20831'}: Props) =>
   );
 };
 
-export const SecuritySafeIcon = ({width = 100, height = 100, color = '#F20831'}: Props) => {
+export const SecuritySafeIcon = ({
+  width = 100,
+  height = 100,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 100 100"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 100 100" fill="none">
       <Path
         d="M87.125 46.3333C87.125 66.7083 72.3334 85.7916 52.1251 91.3749C50.7501 91.7499 49.25 91.7499 47.875 91.3749C27.6666 85.7916 12.875 66.7083 12.875 46.3333V28.0416C12.875 24.6249 15.4584 20.7499 18.6667 19.4582L41.875 9.95837C47.0833 7.83337 52.9583 7.83337 58.1666 9.95837L81.375 19.4582C84.5417 20.7499 87.1667 24.6249 87.1667 28.0416L87.125 46.3333Z"
         stroke={color}
-        strokeWidth="3"
+        strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -912,7 +900,7 @@ export const SecuritySafeIcon = ({width = 100, height = 100, color = '#F20831'}:
         <Path
           d="M50.0013 52.0834C54.6037 52.0834 58.3346 48.3524 58.3346 43.75C58.3346 39.1476 54.6037 35.4167 50.0013 35.4167C45.3989 35.4167 41.668 39.1476 41.668 43.75C41.668 48.3524 45.3989 52.0834 50.0013 52.0834Z"
           stroke={color}
-          strokeWidth="3"
+          strokeWidth="5"
           strokeMiterlimit="10"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -920,7 +908,7 @@ export const SecuritySafeIcon = ({width = 100, height = 100, color = '#F20831'}:
         <Path
           d="M50 52.0834V64.5834"
           stroke={color}
-          strokeWidth="3"
+          strokeWidth="5"
           strokeMiterlimit="10"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -930,14 +918,13 @@ export const SecuritySafeIcon = ({width = 100, height = 100, color = '#F20831'}:
   );
 };
 
-export const PasswordCheckIcon = ({width = 25, height = 25, color = '#F20831'}: Props) => {
+export const PasswordCheckIcon = ({
+  width = 25,
+  height = 25,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <G clip-path="url(#clip0_4292_10706)">
         <Path
           opacity="0.4"
@@ -952,7 +939,7 @@ export const PasswordCheckIcon = ({width = 25, height = 25, color = '#F20831'}: 
           stroke={color}
           strokeWidth="1.5"
           strokeLinecap="round"
-         strokeLinejoin="round"
+          strokeLinejoin="round"
         />
         <Path
           d="M12.5 1.66663V18.3333"
@@ -987,14 +974,13 @@ export const PasswordCheckIcon = ({width = 25, height = 25, color = '#F20831'}: 
   );
 };
 
-export const TickCircleIcon = ({width = 25, height = 25, color = '#F20831'}: Props) => {
+export const TickCircleIcon = ({
+  width = 25,
+  height = 25,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Path
         d="M10.0013 18.3333C14.5846 18.3333 18.3346 14.5833 18.3346 9.99996C18.3346 5.41663 14.5846 1.66663 10.0013 1.66663C5.41797 1.66663 1.66797 5.41663 1.66797 9.99996C1.66797 14.5833 5.41797 18.3333 10.0013 18.3333Z"
         stroke={color}
@@ -1014,14 +1000,13 @@ export const TickCircleIcon = ({width = 25, height = 25, color = '#F20831'}: Pro
   );
 };
 
-export const ActiveRadioIcon = ({width = 25, height = 25, color = '#F20831'}: Props) => {
+export const ActiveRadioIcon = ({
+  width = 25,
+  height = 25,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="white" />
       <Rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#F20831" />
       <Path
@@ -1032,28 +1017,26 @@ export const ActiveRadioIcon = ({width = 25, height = 25, color = '#F20831'}: Pr
   );
 };
 
-export const InActiveRadioIcon = ({width = 25, height = 25, color = '#F20831'}: Props) => {
+export const InActiveRadioIcon = ({
+  width = 25,
+  height = 25,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="white" />
       <Rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#E5E7EB" />
     </Svg>
   );
 };
 
-export const NairaIcon = ({width = 25, height = 25, color = '#F20831'}: Props) => {
+export const NairaIcon = ({
+  width = 25,
+  height = 25,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width="23"
-      height="21"
-      viewBox="0 0 23 21"
-      fill="none"
-      >
+    <Svg width="23" height="21" viewBox="0 0 23 21" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -1064,15 +1047,13 @@ export const NairaIcon = ({width = 25, height = 25, color = '#F20831'}: Props) =
   );
 };
 
-
-export const LinkIcon = ({width = 29, height = 29, color = '#F20831'}: Props) => {
+export const LinkIcon = ({
+  width = 29,
+  height = 29,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 26 26"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 26 26" fill="none">
       <Path
         d="M16.2383 18.9584H17.8741C21.1458 18.9584 23.8324 16.2826 23.8324 13.0001C23.8324 9.72842 21.1566 7.04175 17.8741 7.04175H16.2383"
         stroke="#F20831"
@@ -1099,14 +1080,13 @@ export const LinkIcon = ({width = 29, height = 29, color = '#F20831'}: Props) =>
   );
 };
 
-export const MoneyIcon = ({width = 29, height = 29, color = '#F20831'}: Props) => {
+export const MoneyIcon = ({
+  width = 29,
+  height = 29,
+  color = '#F20831',
+}: Props) => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      viewBox="0 0 28 28"
-      fill="none"
-      >
+    <Svg width={width} height={height} viewBox="0 0 28 28" fill="none">
       <Path
         d="M19.832 23.9166H8.16536C4.66536 23.9166 2.33203 22.1666 2.33203 18.0833V9.91659C2.33203 5.83325 4.66536 4.08325 8.16536 4.08325H19.832C23.332 4.08325 25.6654 5.83325 25.6654 9.91659V18.0833C25.6654 22.1666 23.332 23.9166 19.832 23.9166Z"
         stroke="#F20831"
@@ -1154,6 +1134,342 @@ export const MoneyIcon = ({width = 29, height = 29, color = '#F20831'}: Props) =
         opacity="0.4"
         d="M18.082 20.9999H19.832C21.442 20.9999 22.7487 19.6933 22.7487 18.0833V16.3333"
         stroke="#F20831"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const AssetIcon = ({
+  width = 25,
+  height = 26,
+  color = '#9CA3AF',
+}: Props) => {
+  return (
+    <Svg width={width} height={height} viewBox="0 0 24 25" fill="none">
+      <Path
+        d="M8.0008 22.5H16.0008C20.0208 22.5 20.7408 20.89 20.9508 18.93L21.7008 10.93C21.9708 8.49 21.2708 6.5 17.0008 6.5H7.0008C2.7308 6.5 2.0308 8.49 2.3008 10.93L3.0508 18.93C3.2608 20.89 3.9808 22.5 8.0008 22.5Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 6.5V5.7C8 3.93 8 2.5 11.2 2.5H12.8C16 2.5 16 3.93 16 5.7V6.5"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M14 13.5V14.5C14 14.51 14 14.51 14 14.52C14 15.61 13.99 16.5 12 16.5C10.02 16.5 10 15.62 10 14.53V13.5C10 12.5 10 12.5 11 12.5H13C14 12.5 14 12.5 14 13.5Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M21.65 11.5C19.34 13.18 16.7 14.18 14 14.52"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M2.61914 11.77C4.86914 13.31 7.40914 14.24 9.99914 14.53"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const AssetFilledIcon = ({
+  width = 25,
+  height = 25,
+  color = '#9CA3AF',
+}: Props) => {
+  return (
+    <Svg
+      width={width}
+      height={height}
+      viewBox="0 0 20 20"
+      fill="none"
+      >
+      <Path
+        d="M17.5739 5.81676C16.8656 5.03343 15.6822 4.64176 13.9656 4.64176H13.7656V4.60843C13.7656 3.20843 13.7656 1.4751 10.6322 1.4751H9.36556C6.23222 1.4751 6.23222 3.21676 6.23222 4.60843V4.6501H6.03222C4.30722 4.6501 3.13223 5.04176 2.42389 5.8251C1.59889 6.74176 1.62389 7.9751 1.70723 8.81676L1.71556 8.8751L1.77635 9.51338C1.79061 9.66315 1.87136 9.79853 1.99736 9.88076C2.19941 10.0126 2.50915 10.2114 2.69889 10.3168C2.81556 10.3918 2.94056 10.4584 3.06556 10.5251C4.49056 11.3084 6.05723 11.8334 7.64889 12.0918C7.72389 12.8751 8.06556 13.7918 9.89056 13.7918C11.7156 13.7918 12.0739 12.8834 12.1322 12.0751C13.8322 11.8001 15.4739 11.2084 16.9572 10.3418C17.0072 10.3168 17.0406 10.2918 17.0822 10.2668C17.4024 10.0858 17.7343 9.8641 18.0389 9.64542C18.1521 9.56415 18.2243 9.43801 18.2397 9.29951L18.2489 9.21676L18.2906 8.8251C18.2989 8.7751 18.2989 8.73343 18.3072 8.6751C18.3739 7.83343 18.3572 6.68343 17.5739 5.81676ZM10.9072 11.5251C10.9072 12.4084 10.9072 12.5418 9.88222 12.5418C8.85722 12.5418 8.85722 12.3834 8.85722 11.5334V10.4834H10.9072V11.5251ZM7.42389 4.64176V4.60843C7.42389 3.19176 7.42389 2.66676 9.36556 2.66676H10.6322C12.5739 2.66676 12.5739 3.2001 12.5739 4.60843V4.6501H7.42389V4.64176Z"
+        fill={color}
+      />
+      <Path
+        d="M17.2589 11.509C17.613 11.3417 18.0202 11.6223 17.9848 12.0123L17.6992 15.1583C17.5242 16.8249 16.8409 18.5249 13.1742 18.5249H6.82422C3.15755 18.5249 2.47422 16.8249 2.29922 15.1666L2.02851 12.1888C1.99347 11.8033 2.39179 11.5233 2.74482 11.6819C3.70402 12.113 5.31603 12.8064 6.35201 13.0854C6.51602 13.1295 6.64917 13.2476 6.72357 13.4003C7.23777 14.4555 8.32696 15.0166 9.89088 15.0166C11.4394 15.0166 12.5419 14.4339 13.058 13.3755C13.1326 13.2227 13.2656 13.1047 13.4297 13.0603C14.5315 12.7618 16.2528 11.9845 17.2589 11.509Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+export const EditIcon = ({width = 19, height = 18, color = '#6B7280'}: Props) => {
+  return (
+    <Svg width={width} height={height} viewBox="0 0 17 16" fill="none">
+      <Path
+        opacity="0.4"
+        d="M7.83203 1.33331H6.4987C3.16536 1.33331 1.83203 2.66665 1.83203 5.99998V9.99998C1.83203 13.3333 3.16536 14.6666 6.4987 14.6666H10.4987C13.832 14.6666 15.1654 13.3333 15.1654 9.99998V8.66665"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M11.1933 2.01332L5.93992 7.26665C5.73992 7.46665 5.53992 7.85999 5.49992 8.14665L5.21325 10.1533C5.10659 10.88 5.61992 11.3867 6.34659 11.2867L8.35325 11C8.63325 10.96 9.02659 10.76 9.23325 10.56L14.4866 5.30665C15.3933 4.39999 15.8199 3.34665 14.4866 2.01332C13.1533 0.679985 12.0999 1.10665 11.1933 2.01332Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        opacity="0.4"
+        d="M10.4414 2.76666C10.8881 4.36 12.1347 5.60666 13.7347 6.06"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const TransactionIcon = ({
+  width = 27,
+  height = 28,
+  color = '#F20831',
+}: Props) => {
+  return (
+    <Svg width={width} height={height} viewBox="0 0 24 25" fill="none">
+      <Path
+        d="M20 8.75V18.5C20 21.5 18.21 22.5 16 22.5H8C5.79 22.5 4 21.5 4 18.5V8.75C4 5.5 5.79 4.75 8 4.75C8 5.37 8.24997 5.93 8.65997 6.34C9.06997 6.75 9.63 7 10.25 7H13.75C14.99 7 16 5.99 16 4.75C18.21 4.75 20 5.5 20 8.75Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M16 4.75C16 5.99 14.99 7 13.75 7H10.25C9.63 7 9.06997 6.75 8.65997 6.34C8.24997 5.93 8 5.37 8 4.75C8 3.51 9.01 2.5 10.25 2.5H13.75C14.37 2.5 14.93 2.75 15.34 3.16C15.75 3.57 16 4.13 16 4.75Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        opacity="0.4"
+        d="M8 12.5H12"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        opacity="0.4"
+        d="M8 16.5H16"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const ReferralIcon = ({
+  width = 27,
+  height = 28,
+  color = '#F20831',
+}: Props) => {
+  return (
+    <Svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 25"
+      fill="none"
+      >
+      <G opacity="0.4">
+        <Path
+          d="M18.5 20H14.5"
+          stroke={color}
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M16.5 22V18"
+          stroke={color}
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </G>
+      <Path
+        opacity="0.4"
+        d="M12.1586 11.37C12.0586 11.36 11.9386 11.36 11.8286 11.37C9.44863 11.29 7.55863 9.34 7.55863 6.94C7.54863 4.49 9.53863 2.5 11.9886 2.5C14.4386 2.5 16.4286 4.49 16.4286 6.94C16.4286 9.34 14.5286 11.29 12.1586 11.37Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M11.9891 22.31C10.1691 22.31 8.35906 21.85 6.97906 20.93C4.55906 19.31 4.55906 16.67 6.97906 15.06C9.72906 13.22 14.2391 13.22 16.9891 15.06"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const CSServiceIcon = ({
+  width = 27,
+  height = 28,
+  color = '#F20831',
+}: Props) => {
+  return (
+    <Svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 25"
+      fill="none"
+      >
+      <Path
+        d="M5.48155 18.99V16.07C5.48155 15.1 6.24155 14.23 7.32155 14.23C8.29155 14.23 9.16155 14.99 9.16155 16.07V18.88C9.16155 20.83 7.54154 22.45 5.59154 22.45C3.64154 22.45 2.02153 20.82 2.02153 18.88V12.72C1.91153 7.09997 6.35154 2.54999 11.9715 2.54999C17.5915 2.54999 22.0215 7.09999 22.0215 12.61V18.77C22.0215 20.72 20.4016 22.34 18.4516 22.34C16.5016 22.34 14.8815 20.72 14.8815 18.77V15.96C14.8815 14.99 15.6415 14.12 16.7215 14.12C17.6915 14.12 18.5615 14.88 18.5615 15.96V18.99"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        opacity="0.4"
+        d="M15.5309 9.61999H14.7209C14.5009 9.61999 14.2909 9.75 14.1909 9.94L13.4409 11.44C13.3309 11.66 13.0209 11.66 12.9109 11.44L11.071 7.77002C10.961 7.56002 10.6609 7.55001 10.5509 7.76001L9.71094 9.30999C9.61094 9.49999 9.41095 9.61999 9.19095 9.61999H8.46094"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const RateIcon = ({
+  width = 27,
+  height = 28,
+  color = '#F20831',
+}: Props) => {
+  return (
+    <Svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 25"
+      fill="none"
+      >
+      <Path
+        d="M17.1984 22.5C19.8494 22.5 21.9984 20.351 21.9984 17.7C21.9984 15.049 19.8494 12.9 17.1984 12.9C14.5475 12.9 12.3984 15.049 12.3984 17.7C12.3984 20.351 14.5475 22.5 17.1984 22.5Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M18.9902 17.76H15.4102"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M17.1992 16.01V19.6"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        opacity="0.4"
+        d="M22 9.19C22 11.16 21.49 12.9 20.69 14.41C19.81 13.48 18.57 12.9 17.2 12.9C14.55 12.9 12.4 15.05 12.4 17.7C12.4 18.93 12.87 20.05 13.63 20.9C13.26 21.07 12.92 21.21 12.62 21.31C12.28 21.43 11.72 21.43 11.38 21.31C8.48 20.32 2 16.19 2 9.19C2 6.1 4.49 3.59998 7.56 3.59998C9.37 3.59998 10.99 4.48002 12 5.83002C13.01 4.48002 14.63 3.59998 16.44 3.59998C19.51 3.59998 22 6.1 22 9.19Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const InfoIcon = ({
+  width = 27,
+  height = 28,
+  color = '#F20831',
+}: Props) => {
+  return (
+    <Svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 25"
+      fill="none"
+      >
+      <Path
+        opacity="0.4"
+        d="M21.25 12.5C21.25 17.6086 17.1086 21.75 12 21.75C6.89137 21.75 2.75 17.6086 2.75 12.5C2.75 7.39137 6.89137 3.25 12 3.25C17.1086 3.25 21.25 7.39137 21.25 12.5Z"
+        stroke={color}
+        strokeWidth="1.5"
+      />
+      <Path
+        d="M12.25 13.5C12.25 13.6339 12.1339 13.75 12 13.75C11.8661 13.75 11.75 13.6339 11.75 13.5V8.5C11.75 8.36614 11.8661 8.25 12 8.25C12.1339 8.25 12.25 8.36614 12.25 8.5V13.5Z"
+        stroke={color}
+      />
+      <Path
+        d="M12.92 16.12C12.87 16 12.8 15.89 12.71 15.79C12.61 15.7 12.5 15.63 12.38 15.58C12.14 15.48 11.86 15.48 11.62 15.58C11.5 15.63 11.39 15.7 11.29 15.79C11.2 15.89 11.13 16 11.08 16.12C11.03 16.24 11 16.37 11 16.5C11 16.63 11.03 16.76 11.08 16.88C11.13 17.01 11.2 17.11 11.29 17.21C11.39 17.3 11.5 17.37 11.62 17.42C11.74 17.47 11.87 17.5 12 17.5C12.13 17.5 12.26 17.47 12.38 17.42C12.5 17.37 12.61 17.3 12.71 17.21C12.8 17.11 12.87 17.01 12.92 16.88C12.97 16.76 13 16.63 13 16.5C13 16.37 12.97 16.24 12.92 16.12Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+export const FilterIcon = ({
+  width = 18,
+  height = 18,
+  color = '#F20831',
+}: Props) => {
+  return (
+    <Svg
+      width={width}
+      height={height}
+      viewBox="0 0 16 16"
+      fill="none"
+      >
+      <Path
+        d="M3.59896 1.3999H12.399C13.1323 1.3999 13.7323 1.9999 13.7323 2.73324V4.1999C13.7323 4.73324 13.399 5.3999 13.0656 5.73324L10.199 8.26657C9.79896 8.5999 9.53229 9.26657 9.53229 9.7999V12.6666C9.53229 13.0666 9.26563 13.5999 8.93229 13.7999L7.99896 14.3999C7.13229 14.9332 5.93229 14.3332 5.93229 13.2666V9.73324C5.93229 9.26657 5.66563 8.66657 5.39896 8.33324L2.86563 5.66657C2.53229 5.33324 2.26562 4.73324 2.26562 4.33324V2.7999C2.26562 1.9999 2.86563 1.3999 3.59896 1.3999Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        opacity="0.4"
+        d="M7.28667 1.3999L4 6.66657"
+        stroke={color}
         strokeWidth="1.5"
         strokeMiterlimit="10"
         strokeLinecap="round"

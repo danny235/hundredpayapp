@@ -2,8 +2,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import React from 'react';
 import {Colors} from '../components/Colors';
-import {DiscoverIcon, HomeIcon, SettingsIcon} from '../components/SvgAssets';
+import {AssetIcon, DiscoverIcon, HomeIcon, SettingsIcon} from '../components/SvgAssets';
 import {
+  AssetStackScreen,
   DiscoverStackScreen,
   HomeStackScreen,
   SettingsStackScreen,
@@ -37,6 +38,21 @@ export default function MainTabs(): React.JSX.Element {
         })}
         name="Home"
         component={HomeStackScreen}
+      />
+      <Tab.Screen
+        options={({route}) => ({
+          headerShown: false,
+          tabBarIcon: ({color, size}) => <AssetIcon color={color} />,
+          tabBarStyle: (route => {
+            const routeName = getFocusedRouteNameFromRoute(route) ?? '';
+            console.log(routeName);
+            if (routeName === '') return;
+            if (routeName === 'AssetStack') return;
+            return {display: 'none'};
+          })(route),
+        })}
+        name="Asset"
+        component={AssetStackScreen}
       />
       <Tab.Screen
         options={({route}) => ({

@@ -60,6 +60,16 @@ const SemiBoldText = styled.Text`
     color: ${Colors.balanceBlack}
 `;
 
+const BorderPressable = styled.Pressable<{error?: boolean}>`
+  border: 1px solid ${({error}) => (error ? 'red' : Colors.ash)};
+  background-color: ${Colors.white};
+  border-radius: 7px;
+  padding: 14px;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+`;
+
 
 
 export {
@@ -70,5 +80,6 @@ export {
     RegularText,
     LightText,
     MediumText,
-    SemiBoldText
+    SemiBoldText,
+    BorderPressable
 }
