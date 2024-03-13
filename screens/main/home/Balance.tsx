@@ -56,7 +56,7 @@ export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
       <View style={{gap: 2, }}>
         
         <SemiBoldText
-          style={{fontSize: 29 / fontScale, color: Colors.balanceBlack}}>
+          style={{fontSize: 27 / fontScale, color: Colors.balanceBlack}}>
           {accountBalanceType === 'naira' ? '₦ 60,000.00' : '100,000$PAY'}
         </SemiBoldText>
         <MediumText style={{color: Colors.grayText, fontSize: 13 / fontScale, }}>

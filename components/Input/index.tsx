@@ -53,7 +53,7 @@ function Input({
    };
 
   return (
-    <FieldWrapper formikKey={formikKey} formikProps={formikProps} label={label}>
+    <FieldWrapper formikKey={formikKey} formikProps={formikProps} label={label} {...rest}>
       <StyledInput
         onChangeText={
           onChangeText ? onChangeText : formikProps.handleChange(formikKey)
@@ -79,11 +79,12 @@ function FieldWrapper({
   label,
   formikProps,
   formikKey,
+  ...rest
 }: FieldWrapperProps): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
 
   return (
-    <View style={{gap: 10}}>
+    <View style={{gap: 10}} {...rest}>
       <MediumText style={{fontSize: 15 / fontScale, color: Colors?.balanceBlack}}>
         {label}
       </MediumText>
@@ -97,8 +98,6 @@ function FieldWrapper({
 
 const styles = StyleSheet.create({
   error: {
-    marginBottom: 6,
-    height: 17.5,
     color: 'red',
   },
 });

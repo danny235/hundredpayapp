@@ -1,13 +1,15 @@
 import {NavigationProp} from '@react-navigation/native';
 import {Formik} from 'formik';
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   NativeSyntheticEvent,
   Platform,
+  Pressable,
   TextInputFocusEventData,
   View,
   useWindowDimensions,
 } from 'react-native';
+import CheckBox from 'react-native-check-box';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import * as yup from 'yup';
 import {Button} from '../../../../components/Button/Button';
@@ -15,18 +17,21 @@ import {Colors} from '../../../../components/Colors';
 import Input from '../../../../components/Input';
 import {
   AddIcon,
-  ArrowDownIcon,
   ArrowRightIcon,
+  CursorDownIcon,
+  CursorUpIcon,
 } from '../../../../components/SvgAssets';
 import CustomView from '../../../../components/Views/CustomView';
 import CustomHeader from '../../../../components/headers/CustomHeaders';
 import {useKeyboard} from '../../../../components/hooks/useKeyboard';
 import {
-  BorderPressable,
   LightText,
   MediumText,
+  RegularText,
 } from '../../../../components/styles/styledComponents';
 import {RootStackParamList} from '../../../../routes/AppStacks';
+
+//
 
 const formatNumberWithCommas = (number: number) => {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -34,7 +39,12 @@ const formatNumberWithCommas = (number: number) => {
 
 const generateRequestLinkSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
-  amount: yup.string().required().label('Amount'),
+  amount: yup.string().label('Amount'),
+  firstName: yup.string().label('First Name'),
+  lastName: yup.string().label('Last Name'),
+  email: yup.string().label('Email').email(),
+  thankYouPage: yup.string().label('thankYouPage'),
+  qrCodeId: yup.string().label('qrCodeId'),
 });
 
 type GenerateCodeT = {
@@ -42,8 +52,10 @@ type GenerateCodeT = {
 };
 
 export default function GenerateRequestLink({navigation}: GenerateCodeT) {
-  const {fontScale} = useWindowDimensions();
+  const {fontScale, height} = useWindowDimensions();
   const keyboardHeight = useKeyboard();
+  const [checked, setChecked] = useState(false);
+  const [showAdditionalDetails, setShowAdditionalDetails] = useState(false);
 
   let scrollRef = useRef<KeyboardAwareScrollView>(null);
 
@@ -69,34 +81,30 @@ export default function GenerateRequestLink({navigation}: GenerateCodeT) {
 
       <KeyboardAwareScrollView
         showsVerticalScrollIndicator={true}
-        scrollEnabled={true}
-        contentContainerStyle={{flex: 1}}>
+        scrollEnabled={true}>
         <Formik
           initialValues={{
             name: '',
             amount: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            thankYouPage: '',
+            qrCodeId: '',
           }}
           onSubmit={async (values, actions) => {
             console.log(values.name, values.amount.replace(/,/g, ''));
           }}
           validationSchema={generateRequestLinkSchema}>
           {formikProps => (
-            <View style={{gap: 12, flex: 1}}>
-              <View>
-                <LightText
-                  style={{
-                    fontSize: 14 / fontScale,
-                    marginVertical: 20,
-                    color: Colors.grayText,
-                  }}>
-                  Type in the name of the request you want to create a link for
-                </LightText>
+            <View style={{flex: 1}}>
+              <View style={{flex: 1}}>
                 <Input
                   placeholder="e.g School Fees"
                   formikProps={formikProps}
                   formikKey="name"
                   value={formikProps.values.name}
-                  label="Name Request"
+                  label="Link Description"
                   placeholderTextColor={Colors?.ash}
                 />
                 <LightText
@@ -105,62 +113,127 @@ export default function GenerateRequestLink({navigation}: GenerateCodeT) {
                     marginVertical: 20,
                     color: Colors.grayText,
                   }}>
-                  Select currency and enter the amount you want to receive from
-                  the sender
+                  Type in the name of the new request link you want to create
                 </LightText>
+
+                <Input
+                  formikProps={formikProps}
+                  formikKey="amount"
+                  placeholder="000.000"
+                  value={formikProps.values.amount}
+                  label="Amount"
+                  placeholderTextColor={Colors?.ash}
+                  keyboardType="decimal-pad"
+                  editable={!checked}
+                  onChangeText={(text: string) => {
+                    // Remove commas and other non-numeric characters
+                    const cleanedText = text.replace(/[^0-9.]/g, '');
+
+                    // Format the number with commas
+                    const formattedAmount = formatNumberWithCommas(
+                      Number(cleanedText),
+                    );
+
+                    // Update the Formik field value
+                    formikProps.setFieldValue('amount', formattedAmount);
+                    formikProps.handleChange('amount');
+                  }}
+                />
+
+                <CheckBox
+                  onClick={() => {
+                    setChecked(!checked);
+                  }}
+                  checkBoxColor={Colors.primary}
+                  checkedCheckBoxColor={Colors.primary}
+                  isChecked={checked}
+                  rightText={'Any Amount'}
+                  rightTextStyle={{
+                    fontFamily: 'SpaceGrotesk-Regular',
+                    fontSize: 14 / fontScale,
+                    color: Colors.balanceBlack,
+                  }}
+                />
+
+                {/* Show more details section */}
                 <View
                   style={{
-                    flexDirection: 'row',
-                    gap: 10,
+                    borderTopColor: Colors.ash,
+                    borderTopWidth: 1,
+                    paddingVertical: 10,
+                    marginVertical: 10,
                   }}>
-                  <View style={{gap: 10, width: '30%'}}>
-                    <MediumText
-                      style={{
-                        fontSize: 15 / fontScale,
-                        color: Colors?.balanceBlack,
-                      }}>
-                      Currency
-                    </MediumText>
-                    <BorderPressable>
-                      <MediumText
-                        style={{
-                          fontSize: 14 / fontScale,
-                          color: Colors.balanceBlack,
-                        }}>
-                        $Pay
-                      </MediumText>
-                      <ArrowDownIcon
-                        color={Colors.primary}
-                        width={26}
-                        height={26}
+                  <Pressable
+                    onPress={() =>
+                      setShowAdditionalDetails(!showAdditionalDetails)
+                    }
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}>
+                    <RegularText style={{fontSize: 14 / fontScale}}>
+                      Show Additional Details
+                    </RegularText>
+                    {showAdditionalDetails ? (
+                      <CursorUpIcon />
+                    ) : (
+                      <CursorDownIcon />
+                    )}
+                  </Pressable>
+
+                  {showAdditionalDetails && (
+                    <View style={{width: '100%', marginTop: 20}}>
+                      <View
+                        style={{flexDirection: 'row', width: '100%', gap: 10}}>
+                        <Input
+                          style={{flexBasis: 50, flexGrow: 1, gap: 10}}
+                          placeholder="John"
+                          formikProps={formikProps}
+                          formikKey="firstName"
+                          value={formikProps.values.firstName}
+                          label="First Name"
+                          placeholderTextColor={Colors?.ash}
+                        />
+                        <Input
+                          style={{flexBasis: 50, flexGrow: 1, gap: 10}}
+                          placeholder="Doe"
+                          formikProps={formikProps}
+                          formikKey="lastName"
+                          value={formikProps.values.lastName}
+                          label="Last Name"
+                          placeholderTextColor={Colors?.ash}
+                        />
+                      </View>
+
+                      <Input
+                        placeholder="johndoe@gmail.com"
+                        formikProps={formikProps}
+                        formikKey="email"
+                        value={formikProps.values.email}
+                        label="Email"
+                        keyboardType="email-address"
+                        placeholderTextColor={Colors?.ash}
                       />
-                    </BorderPressable>
-                  </View>
 
-                  <View style={{width: '65%'}}>
-                    <Input
-                      formikProps={formikProps}
-                      formikKey="amount"
-                      placeholder="000.000"
-                      value={formikProps.values.amount}
-                      label="Amount"
-                      placeholderTextColor={Colors?.ash}
-                      keyboardType="decimal-pad"
-                      onChangeText={(text: string) => {
-                        // Remove commas and other non-numeric characters
-                        const cleanedText = text.replace(/[^0-9.]/g, '');
-
-                        // Format the number with commas
-                        const formattedAmount = formatNumberWithCommas(
-                          Number(cleanedText),
-                        );
-
-                        // Update the Formik field value
-                        formikProps.setFieldValue('amount', formattedAmount);
-                        formikProps.handleChange('amount');
-                      }}
-                    />
-                  </View>
+                      <Input
+                        placeholder="https://thankyou.com"
+                        formikProps={formikProps}
+                        formikKey="thankYouPage"
+                        value={formikProps.values.thankYouPage}
+                        label="Thank You Page"
+                        placeholderTextColor={Colors?.ash}
+                      />
+                      <Input
+                        placeholder="P234GH6"
+                        formikProps={formikProps}
+                        formikKey="qrCodeId"
+                        value={formikProps.values.qrCodeId}
+                        label="QR Code ID"
+                        placeholderTextColor={Colors?.ash}
+                      />
+                    </View>
+                  )}
                 </View>
               </View>
 

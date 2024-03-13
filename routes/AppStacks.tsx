@@ -7,6 +7,7 @@ import {
   NotificationScreen,
   OnboardingScreen,
   PaymentCompleteScreen,
+  RecieveModalScreen,
   RootAuth,
   ScanScreen,
   SettingsScreen,
@@ -33,7 +34,8 @@ export type RootStackParamList = {
   TransactionPin: undefined;
   PaymentComplete: undefined;
   GenerateCode: undefined;
-  Notification: undefined
+  Notification: undefined;
+  Recieve: undefined;
   
   // Define other screens and their parameters here
 };
@@ -49,6 +51,7 @@ export function HomeStackScreen(): React.JSX.Element {
     <HomeStack.Navigator
       screenOptions={{
         headerShown: false,
+        animation: "ios"
       }}>
       <HomeStack.Screen name="Dashboard" component={HomeScreen} />
       <HomeStack.Screen name="Pay" component={PayHome} />
@@ -58,6 +61,11 @@ export function HomeStackScreen(): React.JSX.Element {
       <HomeStack.Screen name="TransactionPin" component={TransactionPinScreen} />
       <HomeStack.Screen name="PaymentComplete" component={PaymentCompleteScreen} />
       <HomeStack.Screen name="Notification" component={NotificationScreen} />
+
+      <HomeStack.Screen options={{
+        presentation: "transparentModal",
+        animation: "fade_from_bottom"
+      }} name='Recieve' component={RecieveModalScreen} />
     </HomeStack.Navigator>
   );
 }

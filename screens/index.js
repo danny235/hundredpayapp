@@ -13,3 +13,4 @@ export {default as PaymentCompleteScreen} from "./main/home/PayFlow/PaymentCompl
 export {default as AssetScreen } from "./main/asset/Asset"
 export {default as GenerateRequestLinkScreen} from "./main/home/Recieve/GenerateRequestLink"
 export {default as NotificationScreen} from "./main/home/Notification/Notification"
+export {default as RecieveModalScreen} from "./main/home/RecieveModal/RecieveModal"

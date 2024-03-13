@@ -5,21 +5,22 @@ import {PayIcon, RecieveIcon} from '../../../components/SvgAssets';
 import {MediumText} from '../../../components/styles/styledComponents';
 
 interface ActionProps {
-  onSendClick: () => void;
+  onPayPress: () => void;
+  onRecievePress: () => void;
 }
 
-export default function Action({onSendClick}: ActionProps): React.JSX.Element {
+export default function Action({onPayPress, onRecievePress}: ActionProps): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
 
   return (
     <View style={{gap: 20, flexDirection: 'row'}}>
-      <Pressable onPress={() => onSendClick()} style={styles.btn}>
+      <Pressable onPress={onPayPress} style={styles.btn}>
         <PayIcon />
         <MediumText style={{fontSize: 15 / fontScale, color: Colors.balanceBlack}}>
           Pay
         </MediumText>
       </Pressable>
-      <Pressable style={styles.btn}>
+      <Pressable onPress={onRecievePress} style={styles.btn}>
         <RecieveIcon />
         <MediumText style={{fontSize: 15 / fontScale, color: Colors.balanceBlack}}>
           Recieve

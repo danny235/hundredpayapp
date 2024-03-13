@@ -5,6 +5,7 @@ import {PayIcon, RecieveIcon} from '../../../components/SvgAssets';
 import {
   BoldText,
   LightText,
+  MediumText,
   RegularText,
 } from '../../../components/styles/styledComponents';
 
@@ -34,14 +35,14 @@ export default function TransactionItem({
           ) : (
             <RecieveIcon color={Colors.balanceBlack} />
           )}
-          <BoldText
+          <MediumText
             style={{
-              fontSize: 17 / fontScale,
+              fontSize: 15 / fontScale,
               textTransform: 'capitalize',
               color: Colors.balanceBlack,
             }}>
             {item.title}
-          </BoldText>
+          </MediumText>
         </View>
         <View style={{flexDirection: 'row', gap: 10}}>
           <LightText
@@ -61,19 +62,19 @@ export default function TransactionItem({
       </View>
 
       <View style={{marginLeft: 'auto', justifyContent: 'flex-end'}}>
-        <BoldText
+        <MediumText
           style={{
             textAlign: 'right',
-            fontSize: 17 / fontScale,
+            fontSize: 15 / fontScale,
             textTransform: 'capitalize',
             color: Colors.balanceBlack,
           }}>
           N{item.amount}
-        </BoldText>
+        </MediumText>
         <RegularText
           style={{
             textAlign: 'right',
-            fontSize: 15 / fontScale,
+            fontSize: 14 / fontScale,
             textTransform: 'capitalize',
             color:
               item.status === 'failed' ? Colors.error07 : Colors.success700,

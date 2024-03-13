@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
-  ModalProps,
+  Modal,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -11,8 +11,8 @@ import {Colors} from '../Colors';
 import {BackSpaceIcon} from '../SvgAssets';
 import {MediumText} from '../styles/styledComponents';
 
-interface CustomNumberKeypadProps extends ModalProps {
-  onKeyPress?: (value: string ) => void;
+interface CustomNumberKeypadProps {
+  onKeyPress?: (value: string) => void;
   isVisible: boolean;
   onClose?: (value: boolean) => void;
   onBackspace?: () => void;
@@ -21,12 +21,13 @@ interface CustomNumberKeypadProps extends ModalProps {
 const CustomNumberKeypad: React.FC<CustomNumberKeypadProps> = ({
   isVisible,
   onKeyPress,
-  onRequestClose,
+  onClose,
   onBackspace,
 }) => {
   const [typedValue, setTypedValue] = useState('');
   const {height} = useWindowDimensions();
   const bottomPosition = useRef(new Animated.Value(-height)).current;
+
   const handleKeyPress = (value: string) => {
     if (value === 'Back') {
       onBackspace && onBackspace();
@@ -64,50 +65,53 @@ const CustomNumberKeypad: React.FC<CustomNumberKeypadProps> = ({
       )}
     </TouchableOpacity>
   );
-  // if (!isVisible) return null;
 
   return (
-    <Animated.View
-      style={[
-        {
-          // justifyContent: 'flex-end',
-          height: height / 3,
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          
-        },
-        {
-          bottom: bottomPosition,
-        },
-      ]}>
-      <View style={styles.keypad}>
-        <View style={styles.row}>
-          {renderKeypadButton('1', 1)}
-          {renderKeypadButton('2', 2)}
-          {renderKeypadButton('3', 3)}
-        </View>
-        <View style={styles.row}>
-          {renderKeypadButton('4', 4)}
-          {renderKeypadButton('5', 5)}
-          {renderKeypadButton('6', 6)}
-        </View>
-        <View style={styles.row}>
-          {renderKeypadButton('7', 7)}
-          {renderKeypadButton('8', 8)}
-          {renderKeypadButton('9', 9)}
-        </View>
-        <View style={styles.row}>
-          {renderKeypadButton('', 20)}
-          {renderKeypadButton('0', 10)}
-          {renderKeypadButton('Back', 11)}
-        </View>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={isVisible}
+      onRequestClose={() => onClose && onClose(false)}>
+      <View style={styles.modalContainer}>
+        <Animated.View
+          style={[
+            styles.keypad,
+            {
+              bottom: bottomPosition,
+            },
+          ]}>
+          <View style={styles.row}>
+            {renderKeypadButton('1', 1)}
+            {renderKeypadButton('2', 2)}
+            {renderKeypadButton('3', 3)}
+          </View>
+          <View style={styles.row}>
+            {renderKeypadButton('4', 4)}
+            {renderKeypadButton('5', 5)}
+            {renderKeypadButton('6', 6)}
+          </View>
+          <View style={styles.row}>
+            {renderKeypadButton('7', 7)}
+            {renderKeypadButton('8', 8)}
+            {renderKeypadButton('9', 9)}
+          </View>
+          <View style={styles.row}>
+            {renderKeypadButton('', 20)}
+            {renderKeypadButton('0', 10)}
+            {renderKeypadButton('Back', 11)}
+          </View>
+        </Animated.View>
       </View>
-    </Animated.View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
   keypad: {
     backgroundColor: Colors.white,
     flexDirection: 'column',

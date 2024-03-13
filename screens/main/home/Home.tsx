@@ -1,5 +1,5 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import {
   FlatList,
   Image,
@@ -9,15 +9,14 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {Colors} from '../../../components/Colors';
-import {BoldText, LightText, RegularText} from '../../../components/styles/styledComponents';
+import {BoldText, LightText} from '../../../components/styles/styledComponents';
 import {RootStackParamList} from '../../../routes/AppStacks';
 import Action from './Action';
 import Balance from './Balance';
 import TransactionItem from './TransactionItem';
 
-import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {TouchableOpacity, ViewStyle} from 'react-native';
 import Animated, {
@@ -26,6 +25,9 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../app/store';
+import ChooseAccountBalance from '../../../components/ChooseAccountBalance/ChooseAccountBalance';
 import {useToast} from '../../../components/CustomToast/ToastContext';
 import {
   ArrowFrontIcon,
@@ -33,12 +35,8 @@ import {
   NotifictionIcon,
   ScanIcon,
 } from '../../../components/SvgAssets';
-import SafeAreaViewHeader from '../../../components/Views/SafeAreaView';
-import Memojis from './Memojis';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../app/store';
-import ChooseAccountBalance from '../../../components/ChooseAccountBalance/ChooseAccountBalance';
 import CustomView from '../../../components/Views/CustomView';
+import Memojis from './Memojis';
 
 interface CustomBackdropProps {
   animatedIndex: SharedValue<number>;
@@ -115,9 +113,7 @@ const trx = [
   },
 ];
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList
->;
+type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 interface HomeProps {
   navigation: HomeScreenNavigationProp;
@@ -126,22 +122,24 @@ interface HomeProps {
 export default function Home({navigation}: HomeProps): React.JSX.Element {
   const {accountBalanceType} = useSelector((state: RootState) => state.user);
   const {fontScale} = useWindowDimensions();
-  const [showSwitchBalanceModal, setShowSwithBalanceModal] = useState(false)
+  const [showSwitchBalanceModal, setShowSwithBalanceModal] = useState(false);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const [showRecieveModal, setShowRecieveModal] = useState(false);
   const {showToast} = useToast();
   const copyToClipboard = () => {
     Clipboard.setString('234gh6');
     showToast('Copied successfully');
   };
 
-
   const handleShowModal = () => {
-    setShowSwithBalanceModal(true)
-  }
+    setShowSwithBalanceModal(true);
+  };
 
   return (
     <CustomView>
-      <ScrollView contentContainerStyle={{paddingBottom: 40}} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={{paddingBottom: 40}}
+        showsVerticalScrollIndicator={false}>
         <View
           style={{
             flexDirection: 'row',
@@ -176,20 +174,23 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
             </View>
           </View>
 
-          <View style={{flexDirection: "row", gap: 20}}>
-            <Pressable onPress={()=>navigation.navigate("Scan")}>
+          <View style={{flexDirection: 'row', gap: 20}}>
+            <Pressable onPress={() => navigation.navigate('Scan')}>
               <ScanIcon />
             </Pressable>
-            <Pressable onPress={()=>navigation.navigate("Notification")}>
+            <Pressable onPress={() => navigation.navigate('Notification')}>
               <NotifictionIcon />
             </Pressable>
           </View>
         </View>
-        <Balance   />
+        <View style={{gap: 24}}>
+          <Balance />
 
-        <Action
-          onSendClick={() => navigation.navigate('Pay' as never)}
-        />
+          <Action
+            onPayPress={() => navigation.navigate('Pay' as never)}
+            onRecievePress={() => navigation.navigate('Recieve')}
+          />
+        </View>
         <Memojis />
         <View
           style={{
@@ -200,7 +201,7 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
           <FlatList
             data={trx}
             style={{flexGrow: 1}}
-            contentContainerStyle={{flex: 1, gap: 20, paddingVertical: 20}}
+            contentContainerStyle={{flex: 1, gap: 20, paddingVertical: 4}}
             ListHeaderComponent={() => (
               <Pressable
                 style={{
@@ -235,8 +236,9 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
 
       {/* Send naira modal */}
 
-      {showSwitchBalanceModal && <ChooseAccountBalance onHide={()=>setShowSwithBalanceModal(false)} />}
-      
+      {showSwitchBalanceModal && (
+        <ChooseAccountBalance onHide={() => setShowSwithBalanceModal(false)} />
+      )}
     </CustomView>
   );
 }
