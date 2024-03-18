@@ -14,3 +14,5 @@ export {default as AssetScreen } from "./main/asset/Asset"
 export {default as GenerateRequestLinkScreen} from "./main/home/Recieve/GenerateRequestLink"
 export {default as NotificationScreen} from "./main/home/Notification/Notification"
 export {default as RecieveModalScreen} from "./main/home/RecieveModal/RecieveModal"
+export {default as GeneratedLinkScreen} from "./main/home/Recieve/GeneratedLink";
+export {default as GeneratedCodeScreen} from "./main/home/Recieve/GeneratedCode"

@@ -62,7 +62,7 @@ export default function MainTabs(): React.JSX.Element {
             const routeName = getFocusedRouteNameFromRoute(route) ?? '';
             console.log(routeName);
             if (routeName === '') return;
-            if (routeName === 'DiscoverStack') return;
+            if (routeName === 'DiscoverS') return;
             return {display: 'none'};
           })(route),
         })}

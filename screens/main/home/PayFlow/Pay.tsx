@@ -66,7 +66,6 @@ export default function PayHome({navigation}: PayHomeT) {
               width: '100%',
               alignItems: 'center',
               marginTop: 12,
-              //marginBottom: -24,
             }}>
             <View style={{width: '83%'}}>
               <Input
@@ -77,7 +76,7 @@ export default function PayHome({navigation}: PayHomeT) {
                 autoCapitalize="none"
                 keyboardType="default"
                 placeholderTextColor={Colors.grayText}
-                style={{height: 50}}
+                
               />
             </View>
             <View style={{width: '15%', marginLeft: '2%'}}>

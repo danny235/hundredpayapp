@@ -7,10 +7,10 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styled from 'styled-components/native';
 import {Colors} from '../Colors';
 import {MediumText, RegularText} from '../styles/styledComponents';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface InputProps extends TextInputProps {
   label: string;
@@ -27,6 +27,7 @@ const StyledInput = styled.TextInput<{error?: boolean}>`
   font-size: 15px;
   border: 1px solid ${({error}) => (error ? 'red' : Colors.ash)};
   background-color: ${Colors.white};
+  color: ${Colors.balanceBlack};
 `;
 
 function Input({
@@ -38,22 +39,26 @@ function Input({
 }: InputProps): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
 
-   const scrollRef = useRef<KeyboardAwareScrollView>(null);
+  const scrollRef = useRef<KeyboardAwareScrollView>(null);
 
-   const scrollToInput = (reactNode: any) => {
-     if (scrollRef.current) {
-       scrollRef.current.scrollToFocusedInput(reactNode);
-     }
-   };
+  const scrollToInput = (reactNode: any) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollToFocusedInput(reactNode);
+    }
+  };
 
-   const handleInputFocus = (
-     event: NativeSyntheticEvent<TextInputFocusEventData>,
-   ) => {
-     scrollToInput(event.target);
-   };
+  const handleInputFocus = (
+    event: NativeSyntheticEvent<TextInputFocusEventData>,
+  ) => {
+    scrollToInput(event.target);
+  };
 
   return (
-    <FieldWrapper formikKey={formikKey} formikProps={formikProps} label={label} {...rest}>
+    <FieldWrapper
+      formikKey={formikKey}
+      formikProps={formikProps}
+      label={label}
+      {...rest}>
       <StyledInput
         onChangeText={
           onChangeText ? onChangeText : formikProps.handleChange(formikKey)
@@ -84,8 +89,9 @@ function FieldWrapper({
   const {fontScale} = useWindowDimensions();
 
   return (
-    <View style={{gap: 10}} {...rest}>
-      <MediumText style={{fontSize: 15 / fontScale, color: Colors?.balanceBlack}}>
+    <View style={{gap: 10}} >
+      <MediumText
+        style={{fontSize: 15 / fontScale, color: Colors?.balanceBlack}}>
         {label}
       </MediumText>
       {children}

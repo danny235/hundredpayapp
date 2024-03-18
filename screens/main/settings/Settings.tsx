@@ -122,14 +122,33 @@ export default function Settings({}): React.JSX.Element {
           <View>
             {settingList.map((setting, index)=> {
               return (
-                <Pressable key={setting.id} style={{gap: 20, flexDirection: "row", alignItems: "center", marginVertical: 15}}>
+                <Pressable
+                  key={setting.id}
+                  style={{
+                    gap: 20,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginVertical: 15,
+                  }}>
                   {setting.icon}
                   <View style={{gap: 6}}>
-                    <MediumText style={{fontSize: 15 / fontScale, color: Colors.balanceBlack}}>{setting.title}</MediumText>
-                    <LightText style={{fontSize: 13 / fontScale, color: Colors.grayText}}>{setting.description}</LightText>
+                    <MediumText
+                      style={{
+                        fontSize: 15 / fontScale,
+                        color: Colors.balanceBlack,
+                      }}>
+                      {setting.title}
+                    </MediumText>
+                    <LightText
+                      style={{
+                        fontSize: 13 / fontScale,
+                        color: Colors.grayText,
+                      }}>
+                      {setting.description}
+                    </LightText>
                   </View>
                 </Pressable>
-              )
+              );
             })}
           </View>
       </ScrollView>

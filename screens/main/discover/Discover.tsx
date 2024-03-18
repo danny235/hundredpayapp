@@ -24,7 +24,8 @@ export default function Discover({navigation}: DiscoverT): React.JSX.Element {
 
       <View style={{gap: 20}}>
         <Pressable
-          style={styles.discoverCTA} onPress={()=>navigation.navigate("GenerateCode")}>
+          style={styles.discoverCTA}
+          onPress={() => navigation.navigate('GenerateLink')}>
           <LinkIcon />
           <View style={{gap: 10, flexShrink: 1}}>
             <MediumText style={{fontSize: 17 / fontScale}}>
@@ -34,7 +35,7 @@ export default function Discover({navigation}: DiscoverT): React.JSX.Element {
               style={{
                 fontSize: 13 / fontScale,
                 color: Colors.grayText,
-                width: "80%"
+                width: '80%',
               }}>
               Generate a link you can send to your client to make payments.
             </RegularText>
@@ -42,18 +43,15 @@ export default function Discover({navigation}: DiscoverT): React.JSX.Element {
           <ArrowForwardIcon color={Colors.iconColor} />
         </Pressable>
 
-        <Pressable
-          style={styles.discoverCTA}>
+        <Pressable style={styles.discoverCTA}>
           <LinkIcon />
           <View style={{gap: 10, flexShrink: 1}}>
-            <MediumText style={{fontSize: 17 / fontScale, }}>
-              Payouts
-            </MediumText>
+            <MediumText style={{fontSize: 17 / fontScale}}>Payouts</MediumText>
             <RegularText
               style={{
                 fontSize: 13 / fontScale,
                 color: Colors.grayText,
-                width: "80%"
+                width: '80%',
               }}>
               Gain more control over your payouts.
             </RegularText>

@@ -46,8 +46,8 @@ const RegularText = styled.Text`
 `;
 
 const LightText = styled.Text`
-    font-family: SpaceGrotesk-Light;
-    color: ${Colors.balanceBlack}
+  font-family: SpaceGrotesk-Light;
+  color: ${Colors.balanceBlack};
 `;
 
 const MediumText = styled.Text`

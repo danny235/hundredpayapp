@@ -3,6 +3,8 @@ import {
   AssetScreen,
   DiscoverScreen,
   GenerateRequestLinkScreen,
+  GeneratedCodeScreen,
+  GeneratedLinkScreen,
   HomeScreen,
   NotificationScreen,
   OnboardingScreen,
@@ -14,16 +16,16 @@ import {
   SignIn,
   TransactionPinScreen,
 } from '../screens';
-import MainTabs from './MainTabs';
 import CreateAccount from '../screens/authentication/CreateAccount';
-import PhoneNumber from '../screens/authentication/PhoneNumber';
-import SetPassword from '../screens/authentication/SetPassword';
 import ForgotPassword from '../screens/authentication/ForgotPassword';
-import SecureCode from '../screens/authentication/SecureCode';
 import NewPassword from '../screens/authentication/NewPassword';
+import PhoneNumber from '../screens/authentication/PhoneNumber';
+import SecureCode from '../screens/authentication/SecureCode';
+import SetPassword from '../screens/authentication/SetPassword';
+import ConfirmPayment from '../screens/main/home/PayFlow/ConfirmPayment';
 import PayHome from '../screens/main/home/PayFlow/Pay';
 import SendPayment from '../screens/main/home/PayFlow/SendPayment';
-import ConfirmPayment from '../screens/main/home/PayFlow/ConfirmPayment';
+import MainTabs from './MainTabs';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -33,10 +35,13 @@ export type RootStackParamList = {
   ConfirmPayment: undefined;
   TransactionPin: undefined;
   PaymentComplete: undefined;
-  GenerateCode: undefined;
+  GenerateLink: undefined;
   Notification: undefined;
   Recieve: undefined;
-  
+  GeneratedLink: undefined;
+  GeneratedCode: undefined;
+  Assets: undefined;
+
   // Define other screens and their parameters here
 };
 
@@ -51,21 +56,41 @@ export function HomeStackScreen(): React.JSX.Element {
     <HomeStack.Navigator
       screenOptions={{
         headerShown: false,
-        animation: "ios"
+        animation: 'ios',
       }}>
       <HomeStack.Screen name="Dashboard" component={HomeScreen} />
       <HomeStack.Screen name="Pay" component={PayHome} />
       <HomeStack.Screen name="Scan" component={ScanScreen} />
       <HomeStack.Screen name="SendPayment" component={SendPayment} />
       <HomeStack.Screen name="ConfirmPayment" component={ConfirmPayment} />
-      <HomeStack.Screen name="TransactionPin" component={TransactionPinScreen} />
-      <HomeStack.Screen name="PaymentComplete" component={PaymentCompleteScreen} />
+      <HomeStack.Screen
+        name="TransactionPin"
+        component={TransactionPinScreen}
+      />
+      <HomeStack.Screen
+        name="PaymentComplete"
+        component={PaymentCompleteScreen}
+      />
       <HomeStack.Screen name="Notification" component={NotificationScreen} />
+      <HomeStack.Screen name="GeneratedLink" component={GeneratedLinkScreen} />
+      <HomeStack.Screen name="GeneratedCode" component={GeneratedCodeScreen} />
 
-      <HomeStack.Screen options={{
-        presentation: "transparentModal",
-        animation: "fade_from_bottom"
-      }} name='Recieve' component={RecieveModalScreen} />
+      <HomeStack.Screen
+        options={{
+          presentation: 'transparentModal',
+          animation: 'fade_from_bottom',
+        }}
+        name="Recieve"
+        component={RecieveModalScreen}
+      />
+      {/* Assets */}
+      <HomeStack.Screen name="Assets" component={AssetScreen} />
+      {/* Discover */}
+      <HomeStack.Screen name="DiscoverS" component={DiscoverScreen} />
+      <HomeStack.Screen
+        name="GenerateLink"
+        component={GenerateRequestLinkScreen}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -76,8 +101,11 @@ export function DiscoverStackScreen(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
-      <DiscoverStack.Screen name="DiscoverStack" component={DiscoverScreen} />
-      <DiscoverStack.Screen name="GenerateCode" component={GenerateRequestLinkScreen} />
+      <DiscoverStack.Screen name="DiscoverS" component={DiscoverScreen} />
+      <DiscoverStack.Screen
+        name="GenerateLink"
+        component={GenerateRequestLinkScreen}
+      />
     </DiscoverStack.Navigator>
   );
 }
@@ -88,7 +116,7 @@ export function SettingsStackScreen(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
-      <SettingsStack.Screen name="SettingsStack" component={SettingsScreen} />
+      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
     </SettingsStack.Navigator>
   );
 }
@@ -99,7 +127,7 @@ export function AssetStackScreen(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
-      <AssetStack.Screen name="AssetStack" component={AssetScreen} />
+      <AssetStack.Screen name="Assets" component={AssetScreen} />
     </AssetStack.Navigator>
   );
 }

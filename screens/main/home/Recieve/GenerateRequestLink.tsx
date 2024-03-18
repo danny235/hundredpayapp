@@ -94,11 +94,12 @@ export default function GenerateRequestLink({navigation}: GenerateCodeT) {
           }}
           onSubmit={async (values, actions) => {
             console.log(values.name, values.amount.replace(/,/g, ''));
+            navigation.navigate('GeneratedLink');
           }}
           validationSchema={generateRequestLinkSchema}>
           {formikProps => (
-            <View style={{flex: 1}}>
-              <View style={{flex: 1}}>
+            <View>
+              <View>
                 <Input
                   placeholder="e.g School Fees"
                   formikProps={formikProps}
@@ -110,8 +111,8 @@ export default function GenerateRequestLink({navigation}: GenerateCodeT) {
                 <LightText
                   style={{
                     fontSize: 14 / fontScale,
-                    marginVertical: 20,
                     color: Colors.grayText,
+                    marginBottom: 10
                   }}>
                   Type in the name of the new request link you want to create
                 </LightText>
@@ -162,6 +163,7 @@ export default function GenerateRequestLink({navigation}: GenerateCodeT) {
                     borderTopWidth: 1,
                     paddingVertical: 10,
                     marginVertical: 10,
+                    width: '100%',
                   }}>
                   <Pressable
                     onPress={() =>
@@ -184,26 +186,27 @@ export default function GenerateRequestLink({navigation}: GenerateCodeT) {
 
                   {showAdditionalDetails && (
                     <View style={{width: '100%', marginTop: 20}}>
-                      <View
-                        style={{flexDirection: 'row', width: '100%', gap: 10}}>
-                        <Input
-                          style={{flexBasis: 50, flexGrow: 1, gap: 10}}
-                          placeholder="John"
-                          formikProps={formikProps}
-                          formikKey="firstName"
-                          value={formikProps.values.firstName}
-                          label="First Name"
-                          placeholderTextColor={Colors?.ash}
-                        />
-                        <Input
-                          style={{flexBasis: 50, flexGrow: 1, gap: 10}}
-                          placeholder="Doe"
-                          formikProps={formikProps}
-                          formikKey="lastName"
-                          value={formikProps.values.lastName}
-                          label="Last Name"
-                          placeholderTextColor={Colors?.ash}
-                        />
+                      <View style={{flexDirection: 'row', gap: 10}}>
+                        <View style={{width: '45%', flexGrow: 1}}>
+                          <Input
+                            placeholder="John"
+                            formikProps={formikProps}
+                            formikKey="firstName"
+                            value={formikProps.values.firstName}
+                            label="First Name"
+                            placeholderTextColor={Colors?.ash}
+                          />
+                        </View>
+                        <View style={{width: '45%', flexGrow: 1}}>
+                          <Input
+                            placeholder="Doe"
+                            formikProps={formikProps}
+                            formikKey="lastName"
+                            value={formikProps.values.lastName}
+                            label="Last Name"
+                            placeholderTextColor={Colors?.ash}
+                          />
+                        </View>
                       </View>
 
                       <Input

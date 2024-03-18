@@ -46,7 +46,7 @@ const CustomNumberKeypad: React.FC<CustomNumberKeypadProps> = ({
       }).start();
     } else {
       Animated.timing(bottomPosition, {
-        toValue: -height,
+        toValue: -height * .5,
         duration: 300,
         useNativeDriver: false,
       }).start();
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    paddingVertical: 20
   },
   keypad: {
     backgroundColor: Colors.white,

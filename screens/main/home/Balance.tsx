@@ -25,7 +25,7 @@ export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
     <View
       style={{
         gap: 4,
-        paddingVertical: 5
+        paddingVertical: 5,
       }}>
       <View
         style={{
@@ -48,19 +48,23 @@ export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
         <RegularText style={{fontSize: 15 / fontScale, color: Colors.grayText}}>
           Account Balance
         </RegularText>
-        <Pressable onPress={()=> dispatch(updateShowAccountBalance())}>
-
-        {showAccountBalance ? <EyeLineIcon width={15} height={15} /> : <EyeIcon width={15} height={15} />}
+        <Pressable onPress={() => dispatch(updateShowAccountBalance())}>
+          {showAccountBalance ? (
+            <EyeLineIcon width={15} height={15} />
+          ) : (
+            <EyeIcon width={15} height={15} />
+          )}
         </Pressable>
       </View>
-      <View style={{gap: 2, }}>
-        
+      <View style={{gap: 2}}>
         <SemiBoldText
           style={{fontSize: 27 / fontScale, color: Colors.balanceBlack}}>
-          {accountBalanceType === 'naira' ? '₦ 60,000.00' : '100,000$PAY'}
+          {/* {accountBalanceType === 'naira' ? '₦ 60,000.00' : '100,000$PAY'} */}
+          {showAccountBalance ? '₦ 60,000.00' : '******'}
         </SemiBoldText>
-        <MediumText style={{color: Colors.grayText, fontSize: 13 / fontScale, }}>
-          {accountBalanceType === 'pay-token' ? ' ₦ 60,000.00' : '100,000$PAY'}
+        <MediumText style={{color: Colors.grayText, fontSize: 13 / fontScale}}>
+          {/* {accountBalanceType === 'pay-token' ? ' ₦ 60,000.00' : '100,000$PAY'} */}
+          {showAccountBalance ? '100,000$PAY' : '******'}
         </MediumText>
       </View>
     </View>
