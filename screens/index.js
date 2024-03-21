@@ -16,3 +16,4 @@ export {default as NotificationScreen} from "./main/home/Notification/Notificati
 export {default as RecieveModalScreen} from "./main/home/RecieveModal/RecieveModal"
 export {default as GeneratedLinkScreen} from "./main/home/Recieve/GeneratedLink";
 export {default as GeneratedCodeScreen} from "./main/home/Recieve/GeneratedCode"
+export {default as EditProfileScreen} from "./main/settings/EditProfile"

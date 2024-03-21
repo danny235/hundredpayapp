@@ -7,9 +7,15 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import UserAvatar from '../../../../assets/images/DashboardEmojis/Avatar-a.png';
+import {Button} from '../../../../components/Button/Button';
 import {Colors} from '../../../../components/Colors';
-import {ArrowRightIcon, CopyIcon, PayIcon} from '../../../../components/SvgAssets';
+import {
+  ArrowRightIcon,
+  CopyIcon,
+  PayIcon,
+} from '../../../../components/SvgAssets';
 import CustomView from '../../../../components/Views/CustomView';
 import CustomHeader from '../../../../components/headers/CustomHeaders';
 import {
@@ -19,8 +25,6 @@ import {
 } from '../../../../components/styles/styledComponents';
 import {RootStackParamList} from '../../../../routes/AppStacks';
 import {addCommas, truncateText} from '../../../../utils';
-import { ScrollView } from 'react-native-gesture-handler';
-import { Button } from '../../../../components/Button/Button';
 
 type ConfirmPaymentT = {
   navigation: NavigationProp<RootStackParamList>;
@@ -43,7 +47,9 @@ export default function ConfirmPayment({navigation}: ConfirmPaymentT) {
             paddingVertical: 20,
           }}>
           <LightText style={{fontSize: 14 / fontScale}}>Total Amount</LightText>
-          <BoldText style={{fontSize: 36 / fontScale}}>{addCommas(6000)}.00</BoldText>
+          <BoldText style={{fontSize: 36 / fontScale}}>
+            {addCommas(6000)}.00
+          </BoldText>
         </View>
 
         <View
@@ -120,15 +126,15 @@ export default function ConfirmPayment({navigation}: ConfirmPaymentT) {
 
           <View>
             <BoldText style={{fontSize: 12 / fontScale}}>Note:</BoldText>
-            <MediumText style={{fontSize: 12 / fontScale, width: "90%"}}>
+            <MediumText style={{fontSize: 12 / fontScale, width: '90%'}}>
               Make sure to confirm the all details of this transaction to ensure
               you are making payments to the right recipient.
             </MediumText>
           </View>
         </View>
-
+      </ScrollView>
+      <View style={{marginTop: 'auto', paddingVertical: 20}}>
         <Button
-          style={{marginTop: 'auto'}}
           variant="primary"
           isLarge={false}
           isWide={true}
@@ -138,7 +144,7 @@ export default function ConfirmPayment({navigation}: ConfirmPaymentT) {
           </MediumText>
           <ArrowRightIcon />
         </Button>
-      </ScrollView>
+      </View>
     </CustomView>
   );
 }

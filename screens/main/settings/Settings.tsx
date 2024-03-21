@@ -7,10 +7,14 @@ import { Colors } from '../../../components/Colors';
 import { CSServiceIcon, CopyIcon, EditIcon, InfoIcon, RateIcon, ReferralIcon, SecuritySafeIcon, TransactionIcon } from '../../../components/SvgAssets';
 import { useToast } from '../../../components/CustomToast/ToastContext';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../../routes/AppStacks';
 
+type SettingsT = {
+  navigation: NavigationProp<RootStackParamList>;
+};
 
-
-export default function Settings({}): React.JSX.Element {
+export default function Settings({navigation}: SettingsT): React.JSX.Element {
   const {fontScale} = useWindowDimensions()
   const {showToast} = useToast();
   const settingList = [
@@ -107,7 +111,7 @@ export default function Settings({}): React.JSX.Element {
               </MediumText>
               <CopyIcon />
             </Pressable>
-            <Pressable style={styles.pressableCTA}>
+            <Pressable onPress={()=>navigation.navigate("EditProfile")} style={styles.pressableCTA}>
               <MediumText
                 style={{
                   fontSize: 12 / fontScale,

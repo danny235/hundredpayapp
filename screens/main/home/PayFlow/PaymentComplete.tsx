@@ -8,8 +8,8 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import SuccessImg from '../../../../assets/images/AuthMemoji.png';
 import UserAvatar from '../../../../assets/images/DashboardEmojis/Avatar-a.png';
-import SuccessImg from "../../../../assets/images/AuthMemoji.png"
 import {Button} from '../../../../components/Button/Button';
 import {Colors} from '../../../../components/Colors';
 import {
@@ -26,7 +26,8 @@ import {
 } from '../../../../components/styles/styledComponents';
 import {RootStackParamList} from '../../../../routes/AppStacks';
 import {addCommas, truncateText} from '../../../../utils';
-
+import { TouchableHighlight } from '@gorhom/bottom-sheet';
+import AmountInput from '../../../../components/Input/AmountInput';
 
 type PaymentCompleteT = {
   navigation: NavigationProp<RootStackParamList>;
@@ -46,9 +47,12 @@ export default function PaymentComplete({navigation}: PaymentCompleteT) {
           style={{
             alignItems: 'center',
             paddingVertical: 20,
-            gap: 10
+            gap: 10,
           }}>
-            <Image source={SuccessImg} style={{objectFit: "contain", width: "100%", height: 100}}  />
+          <Image
+            source={SuccessImg}
+            style={{objectFit: 'contain', width: '100%', height: 100}}
+          />
           <LightText style={{fontSize: 14 / fontScale}}>
             Payment Successfull
           </LightText>
@@ -137,24 +141,24 @@ export default function PaymentComplete({navigation}: PaymentCompleteT) {
             </MediumText>
           </View>
         </View>
-
-        <Button
-          style={{marginTop: 'auto'}}
-          variant="primary"
-          isLarge={false}
-          isWide={true}
-          onPress={() =>
-            navigation.reset({
-              index: 0,
-              routes: [{name: 'Home'}],
-            })
-          }>
-          <MediumText style={{color: Colors.white, fontSize: 15 / fontScale}}>
-            Finish
-          </MediumText>
-          <ArrowRightIcon />
-        </Button>
       </ScrollView>
+        <View style={{marginTop: 'auto', paddingVertical: 20}}>
+          <Button
+            variant="primary"
+            isLarge={false}
+            isWide={true}
+            onPress={() =>
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'Home'}],
+              })
+            }>
+            <MediumText style={{color: Colors.white, fontSize: 15 / fontScale}}>
+              Finish
+            </MediumText>
+            <ArrowRightIcon />
+          </Button>
+        </View>
     </CustomView>
   );
 }

@@ -1752,3 +1752,34 @@ export const LinkHookIcon = ({
     </Svg>
   );
 };
+
+// export const EditIcon = ({
+//   width = 22,
+//   height = 22,
+//   color = '#F20831',
+// }: Props) => {
+//   return (
+//     <Svg
+//       width={width}
+//       height={height}
+//       viewBox="0 0 20 20"
+//       fill="none"
+//       >
+//       <Path
+//         d="M2.7263 10C2.06797 9.20833 1.66797 8.19167 1.66797 7.08333C1.66797 4.56667 3.7263 2.5 6.2513 2.5H10.418C12.9346 2.5 15.0013 4.56667 15.0013 7.08333C15.0013 9.6 12.943 11.6667 10.418 11.6667H8.33464"
+//         stroke="#F20831"
+//         strokeWidth="1.5"
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//       />
+//       <Path
+//         opacity="0.4"
+//         d="M17.275 10C17.9333 10.7917 18.3333 11.8084 18.3333 12.9167C18.3333 15.4334 16.275 17.5 13.75 17.5H9.58333C7.06667 17.5 5 15.4334 5 12.9167C5 10.4 7.05833 8.33337 9.58333 8.33337H11.6667"
+//         stroke="#F20831"
+//         strokeWidth="1.5"
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//       />
+//     </Svg>
+//   );
+// };

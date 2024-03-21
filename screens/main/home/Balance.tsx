@@ -46,7 +46,7 @@ export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
           <WalletIcon />
         </View>
         <RegularText style={{fontSize: 15 / fontScale, color: Colors.grayText}}>
-          Account Balance
+          Cash Balance
         </RegularText>
         <Pressable onPress={() => dispatch(updateShowAccountBalance())}>
           {showAccountBalance ? (
@@ -62,10 +62,7 @@ export default function Balance({onBalanceClick}: Props ): React.JSX.Element {
           {/* {accountBalanceType === 'naira' ? '₦ 60,000.00' : '100,000$PAY'} */}
           {showAccountBalance ? '₦ 60,000.00' : '******'}
         </SemiBoldText>
-        <MediumText style={{color: Colors.grayText, fontSize: 13 / fontScale}}>
-          {/* {accountBalanceType === 'pay-token' ? ' ₦ 60,000.00' : '100,000$PAY'} */}
-          {showAccountBalance ? '100,000$PAY' : '******'}
-        </MediumText>
+       
       </View>
     </View>
   );

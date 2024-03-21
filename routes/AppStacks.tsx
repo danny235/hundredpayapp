@@ -2,6 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   AssetScreen,
   DiscoverScreen,
+  EditProfileScreen,
   GenerateRequestLinkScreen,
   GeneratedCodeScreen,
   GeneratedLinkScreen,
@@ -41,6 +42,7 @@ export type RootStackParamList = {
   GeneratedLink: undefined;
   GeneratedCode: undefined;
   Assets: undefined;
+  EditProfile: undefined;
 
   // Define other screens and their parameters here
 };
@@ -116,7 +118,8 @@ export function SettingsStackScreen(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
-      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+      <SettingsStack.Screen name="Setting" component={SettingsScreen} />
+      <SettingsStack.Screen name="EditProfile" component={EditProfileScreen} />
     </SettingsStack.Navigator>
   );
 }
